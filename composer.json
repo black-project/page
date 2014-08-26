@@ -1,0 +1,27 @@
+{
+    "name": "black/page-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony BlackPageBundle",
+    "keywords": ["Bundle", "Symfony", "Black"],
+    "homepage": "http://www.lablackroom.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexandre Balmes",
+            "email": "abalmes@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php":                      ">=5.4.0",
+        "monolog/monolog":          "~1.10",
+        "symfony/event-dispatcher": "~2.5",
+        "symfony/http-kernel":      "~2.5",
+        "black/common":             "1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Black\\Component\\Page\\": "src/Page"
+        }
+    }
+}
