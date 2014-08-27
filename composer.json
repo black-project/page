@@ -1,8 +1,8 @@
 {
     "name": "black/page-bundle",
-    "type": "symfony-bundle",
-    "description": "Symfony BlackPageBundle",
-    "keywords": ["Bundle", "Symfony", "Black"],
+    "type": "library",
+    "description": "Page library for Black projects",
+    "keywords": ["libary", "Black"],
     "homepage": "http://www.lablackroom.com",
     "license": "MIT",
     "authors": [
@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Black\\Component\\Page\\": "src/Page"
+            "Black\\Component\\Page\\": "src/Black/Component/Page/"
         }
     }
 }
