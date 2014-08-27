@@ -48,4 +48,4 @@ class WebPageDepublishedSubscriber implements EventSubscriberInterface
     {
         $this->logger->info($event->execute());
     }
-} 
+}

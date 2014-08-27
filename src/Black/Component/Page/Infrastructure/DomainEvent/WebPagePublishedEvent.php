@@ -48,4 +48,4 @@ final class WebPagePublishedEvent extends Event implements DomainEvent
     {
         return sprintf('The page %s was successfully published for %s identifier', $this->name, $this->webPageId);
     }
-} 
+}

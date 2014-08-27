@@ -71,4 +71,4 @@ final class CreateWebPageCommand implements Command
     {
         return $this->name;
     }
-} 
+}

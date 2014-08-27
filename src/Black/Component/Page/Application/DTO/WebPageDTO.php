@@ -205,4 +205,4 @@ class WebPageDTO implements DTO
            $this->text,
         ) = json_decode($serialized);
     }
-} 
+}

@@ -48,4 +48,4 @@ final class WebPageWritedEvent extends Event implements DomainEvent
     {
         return sprintf('The page %s was successfully writed for %s identifier', $this->name, $this->webPageId);
     }
-} 
+}

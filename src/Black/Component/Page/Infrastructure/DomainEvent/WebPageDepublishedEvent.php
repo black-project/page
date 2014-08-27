@@ -48,4 +48,4 @@ final class WebPageDepublishedEvent extends Event implements DomainEvent
     {
         return sprintf('The page %s was successfully depublished for %s identifier', $this->name, $this->webPageId);
     }
-} 
+}

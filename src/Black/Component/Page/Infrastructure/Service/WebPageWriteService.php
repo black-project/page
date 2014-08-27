@@ -128,4 +128,4 @@ class WebPageWriteService implements InfrastructureService
 
         return $webPage;
     }
-} 
+}

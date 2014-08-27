@@ -58,4 +58,4 @@ final class WebPageId implements ValueObject
     {
         return $this->getValue() === $webPageId->getValue();
     }
-} 
+}

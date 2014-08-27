@@ -50,4 +50,4 @@ class WebPageCreatedSubscriber implements EventSubscriberInterface
 
         return $event->getWebPageId();
     }
-} 
+}

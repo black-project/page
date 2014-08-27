@@ -48,4 +48,4 @@ final class WebPageRemovedEvent extends Event implements DomainEvent
     {
         return sprintf('The page %s with %s identifier is terminated.', $this->name, $this->webPageId);
     }
-} 
+}

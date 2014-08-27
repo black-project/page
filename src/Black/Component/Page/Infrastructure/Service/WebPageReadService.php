@@ -50,4 +50,4 @@ class WebPageReadService implements InfrastructureService
 
         return $page;
     }
-} 
+}

@@ -64,4 +64,4 @@ final class WebPageCreatedEvent extends Event implements DomainEvent
     {
         return $this->name;
     }
-} 
+}

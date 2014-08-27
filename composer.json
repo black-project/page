@@ -1,5 +1,5 @@
 {
-    "name": "black/page-bundle",
+    "name": "black/page",
     "type": "library",
     "description": "Page library for Black projects",
     "keywords": ["libary", "Black"],

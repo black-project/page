@@ -48,4 +48,4 @@ class WebPagePublishedSubscriber implements EventSubscriberInterface
     {
         $this->logger->info($event->execute());
     }
-} 
+}

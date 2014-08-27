@@ -78,4 +78,4 @@ final class CreateWebPageHandler implements CommandHandler
 
         $this->eventDispatcher->dispatch('web_page.created', $event);
     }
-} 
+}
