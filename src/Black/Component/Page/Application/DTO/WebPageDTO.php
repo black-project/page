@@ -74,9 +74,9 @@ class WebPageDTO implements DTO
      * @param $id
      * @param $author
      * @param string $name
-     * @param null $headline
-     * @param null $about
-     * @param null $text
+     * @param null   $headline
+     * @param null   $about
+     * @param null   $text
      */
     public function __construct($id, $author, $name = 'New WebPage!', $headline = null, $about = null, $text = null)
     {

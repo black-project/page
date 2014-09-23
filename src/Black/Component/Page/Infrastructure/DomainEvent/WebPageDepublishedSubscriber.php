@@ -32,7 +32,7 @@ class WebPageDepublishedSubscriber implements EventSubscriberInterface
     /**
      * @return array
      */
-    static public function getSubscribedEvents()
+    public static function getSubscribedEvents()
     {
         return [
             'web_page.depublished' => [

@@ -21,6 +21,8 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class WebPageCreatedSubscriber implements EventSubscriberInterface
 {
+    protected $logger;
+
     /**
      * @param Logger $logger
      */
@@ -32,7 +34,7 @@ class WebPageCreatedSubscriber implements EventSubscriberInterface
     /**
      * @return array
      */
-    static public function getSubscribedEvents()
+    public static function getSubscribedEvents()
     {
         return [
             'web_page.created' => [

@@ -34,9 +34,9 @@ class WebPageReadService implements ApplicationService
     protected $transformer;
 
     /**
-     * @param Specification $specification
+     * @param Specification         $specification
      * @param InfrastructureService $service
-     * @param WebPageTransformer $transformer
+     * @param WebPageTransformer    $transformer
      */
     public function __construct(
         Specification $specification,

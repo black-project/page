@@ -47,8 +47,8 @@ final class RemoveWebPageHandler implements CommandHandler
     protected $subscriber;
 
     /**
-     * @param WebPageWriteService $service
-     * @param WebPageManager $manager
+     * @param WebPageWriteService      $service
+     * @param WebPageManager           $manager
      * @param TraceableEventDispatcher $eventDispatcher
      * @param WebPageRemovedSubscriber $subscriber
      */
@@ -65,7 +65,7 @@ final class RemoveWebPageHandler implements CommandHandler
     }
 
     /**
-     * @param RemoveWebPageCommand $command
+     * @param  RemoveWebPageCommand $command
      * @return mixed
      */
     public function handle(RemoveWebPageCommand $command)

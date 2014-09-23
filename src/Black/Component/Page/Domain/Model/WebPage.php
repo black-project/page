@@ -63,7 +63,6 @@ class WebPage implements Entity
      */
     protected $text;
 
-
     /**
      * The date on which the WebPage was created
      *

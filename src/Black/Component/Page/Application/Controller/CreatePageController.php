@@ -39,7 +39,7 @@ class CreatePageController
     protected $handler;
 
     /**
-     * @param Bus $bus
+     * @param Bus                  $bus
      * @param CreateWebPageHandler $handler
      * @param $commandName
      */

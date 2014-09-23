@@ -4,7 +4,6 @@ namespace spec\Black\Component\Page\Application\DTO;
 
 use Black\Component\Page\Domain\Model\WebPageId;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class WebPageTransformerSpec extends ObjectBehavior
 {
@@ -12,7 +11,7 @@ class WebPageTransformerSpec extends ObjectBehavior
 
     protected $dtoClass;
 
-    function let()
+    public function let()
     {
         $this->entityClass = 'Black\Component\Page\Domain\Model\WebPage';
         $this->dtoClass    = 'Black\Component\Page\Application\DTO\WebPageDTO';
@@ -20,18 +19,18 @@ class WebPageTransformerSpec extends ObjectBehavior
         $this->beConstructedWith($this->entityClass, $this->dtoClass);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldImplement('Black\DDD\DDDinPHP\Application\DTO\Transformer');
     }
 
-    function it_should_transform()
+    public function it_should_transform()
     {
         $entity = new $this->entityClass(new WebPageId(1), 'test', 'test');
         $this->transform($entity)->shouldReturnAnInstanceOf($this->dtoClass);
     }
 
-    function it_should_reverseTransform()
+    public function it_should_reverseTransform()
     {
         $dto = new $this->dtoClass(1, 'test', 'test');
         $this->reverseTransform($dto)->shouldReturnAnInstanceOf($this->entityClass);

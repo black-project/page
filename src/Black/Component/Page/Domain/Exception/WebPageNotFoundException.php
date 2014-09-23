@@ -32,4 +32,4 @@ final class WebPageNotFoundException extends NotFoundHttpException
     {
         parent::__construct($message, $previous, $code);
     }
-} 
+}

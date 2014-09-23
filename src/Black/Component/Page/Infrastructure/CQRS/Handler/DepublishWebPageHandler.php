@@ -47,9 +47,9 @@ final class DepublishWebPageHandler implements CommandHandler
     protected $subscriber;
 
     /**
-     * @param WebPageWriteService $service
-     * @param WebPageManager $manager
-     * @param TraceableEventDispatcher $eventDispatcher
+     * @param WebPageWriteService        $service
+     * @param WebPageManager             $manager
+     * @param TraceableEventDispatcher   $eventDispatcher
      * @param WebPagePublishedSubscriber $subscriber
      */
     public function __construct(
@@ -65,7 +65,7 @@ final class DepublishWebPageHandler implements CommandHandler
     }
 
     /**
-     * @param PublishWebPageCommand $command
+     * @param  PublishWebPageCommand $command
      * @return mixed
      */
     public function handle(PublishWebPageCommand $command)

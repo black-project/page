@@ -5,7 +5,6 @@ namespace spec\Black\Component\Page\Domain\Model;
 use Black\Component\Page\Domain\Model\WebPage;
 use Black\Component\Page\Domain\Model\WebPageId;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class WebPageSpec extends ObjectBehavior
 {
@@ -29,7 +28,7 @@ class WebPageSpec extends ObjectBehavior
 
     protected $datePublished;
 
-    function let()
+    public function let()
     {
         $pageId = new WebPageId('12345');
         $page   = new WebPage($pageId, 'test', 'test');
@@ -41,27 +40,27 @@ class WebPageSpec extends ObjectBehavior
         $this->beConstructedWith($this->webPageId, $this->name, $this->author);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\Page\Domain\Model\WebPage');
     }
 
-    function it_should_have_a_dateCreated()
+    public function it_should_have_a_dateCreated()
     {
         $this->getDateCreated()->shouldHaveType('DateTime');
     }
 
-    function it_should_have_a_dateModified()
+    public function it_should_have_a_dateModified()
     {
         $this->getDateCreated()->shouldHaveType('DateTime');
     }
 
-    function it_should_not_be_published()
+    public function it_should_not_be_published()
     {
         $this->shouldNotBePublished();
     }
 
-    function it_should_be_write()
+    public function it_should_be_write()
     {
         $this->headline = "headline";
         $this->about    = "about";
@@ -74,7 +73,7 @@ class WebPageSpec extends ObjectBehavior
         $this->getText()->shouldReturn("text");
     }
 
-    function it_should_be_edited()
+    public function it_should_be_edited()
     {
         $this->headline = "headline 2";
         $this->about    = "about 2";
@@ -87,14 +86,14 @@ class WebPageSpec extends ObjectBehavior
         $this->getText()->shouldReturn("text 2");
     }
 
-    function it_sould_be_published()
+    public function it_sould_be_published()
     {
         $this->publish(new \DateTime());
 
         $this->shouldBePublished();
     }
 
-    function it_should_be_depublished()
+    public function it_should_be_depublished()
     {
         $this->depublish();
 

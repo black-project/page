@@ -39,7 +39,7 @@ class PublishPageController
     protected $handler;
 
     /**
-     * @param Bus $bus
+     * @param Bus                   $bus
      * @param PublishWebPageHandler $handler
      * @param $commandName
      */

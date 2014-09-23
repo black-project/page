@@ -25,7 +25,7 @@ class WebPageReadService implements InfrastructureService
 
     /**
      * @param WebPageManager $manager
-     * @param Specification $specification
+     * @param Specification  $specification
      */
     public function __construct(
         WebPageManager $manager,
@@ -36,7 +36,7 @@ class WebPageReadService implements InfrastructureService
     }
 
     /**
-     * @param WebPageId $webPageId
+     * @param  WebPageId                                                       $webPageId
      * @return mixed
      * @throws \Black\Component\Page\Domain\Exception\WebPageNotFoundException
      */

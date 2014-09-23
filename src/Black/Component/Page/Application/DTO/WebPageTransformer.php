@@ -44,7 +44,7 @@ class WebPageTransformer implements Transformer
     }
 
     /**
-     * @param Entity $webPage
+     * @param  Entity $webPage
      * @return mixed
      */
     public function transform(Entity $webPage)
@@ -66,7 +66,7 @@ class WebPageTransformer implements Transformer
     }
 
     /**
-     * @param DTO $webPageDTO
+     * @param  DTO   $webPageDTO
      * @return mixed
      */
     public function reverseTransform(DTO $webPageDTO)

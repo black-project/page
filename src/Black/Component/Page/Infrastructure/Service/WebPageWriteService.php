@@ -67,7 +67,7 @@ class WebPageWriteService implements InfrastructureService
 
     /**
      * @param WebPageId $webPageId
-     * @param string $dateTime
+     * @param string    $dateTime
      *
      * @return mixed
      * @throws \Black\Component\Page\Domain\Exception\WebPageNotFoundException
@@ -91,7 +91,7 @@ class WebPageWriteService implements InfrastructureService
     }
 
     /**
-     * @param WebPageId $webPageId
+     * @param  WebPageId $webPageId
      * @return mixed
      *
      * @throws \Black\Component\Page\Domain\Exception\WebPageNotFoundException

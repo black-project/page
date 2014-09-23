@@ -39,7 +39,7 @@ class RemovePageController
     protected $handler;
 
     /**
-     * @param Bus $bus
+     * @param Bus                  $bus
      * @param RemoveWebPageHandler $handler
      * @param $commandName
      */

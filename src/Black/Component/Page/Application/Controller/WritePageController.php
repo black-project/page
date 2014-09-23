@@ -40,7 +40,7 @@ class WritePageController
     protected $handler;
 
     /**
-     * @param Bus $bus
+     * @param Bus                 $bus
      * @param WriteWebPageHandler $handler
      * @param $commandName
      */

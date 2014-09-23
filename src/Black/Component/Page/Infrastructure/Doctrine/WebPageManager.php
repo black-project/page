@@ -24,8 +24,8 @@ use Black\Component\Page\Domain\Model\WebPage;
 class WebPageManager extends CommonManager
 {
     /**
-     * @param WebPageId $id
-     * @param string $name
+     * @param  WebPageId $id
+     * @param  string    $name
      * @param $author
      * @return mixed
      */
@@ -38,7 +38,7 @@ class WebPageManager extends CommonManager
     }
 
     /**
-     * @param WebPageId $id
+     * @param  WebPageId $id
      * @return mixed
      */
     public function find(WebPageId $id)

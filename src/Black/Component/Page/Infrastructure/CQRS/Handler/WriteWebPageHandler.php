@@ -47,10 +47,10 @@ final class WriteWebPageHandler implements CommandHandler
     protected $subscriber;
 
     /**
-     * @param WebPageWriteService $service
-     * @param WebPageManager $manager
+     * @param WebPageWriteService      $service
+     * @param WebPageManager           $manager
      * @param TraceableEventDispatcher $eventDispatcher
-     * @param WebPageWritedSubscriber $subscriber
+     * @param WebPageWritedSubscriber  $subscriber
      */
     public function __construct(
         WebPageWriteService $service,
@@ -65,7 +65,7 @@ final class WriteWebPageHandler implements CommandHandler
     }
 
     /**
-     * @param WriteWebPageCommand $command
+     * @param  WriteWebPageCommand $command
      * @return mixed
      */
     public function handle(WriteWebPageCommand $command)
