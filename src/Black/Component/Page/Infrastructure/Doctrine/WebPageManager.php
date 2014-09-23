@@ -77,6 +77,6 @@ class WebPageManager extends CommonManager
             throw new \InvalidArgumentException(gettype($webPage));
         }
 
-        $this->getManager()->remove($webPage);
+        $this->manager->remove($webPage);
     }
 }
