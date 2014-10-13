@@ -19,7 +19,7 @@ use Black\DDD\DDDinPHP\Application\Specification\Specification;
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-class PageIsPublishedSpecification implements Specification
+final class PageIsPublishedSpecification implements Specification
 {
     /**
      * @param WebPage $webPage

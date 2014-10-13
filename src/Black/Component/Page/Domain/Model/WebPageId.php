@@ -23,7 +23,7 @@ final class WebPageId implements ValueObject
     /**
      * @var
      */
-    protected $value;
+    private $value;
 
     /**
      * @param $value

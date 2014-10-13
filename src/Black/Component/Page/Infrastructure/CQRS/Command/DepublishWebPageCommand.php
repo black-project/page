@@ -24,7 +24,7 @@ final class DepublishWebPageCommand implements Command
     /**
      * @var \Black\Component\Page\Domain\Model\WebPageId
      */
-    protected $webPageId;
+    private $webPageId;
 
     /**
      * @param WebPageId $webPageId

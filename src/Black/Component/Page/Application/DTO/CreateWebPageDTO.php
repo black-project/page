@@ -10,32 +10,32 @@ use Black\DDD\DDDinPHP\Application\DTO\DTO;
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-class CreateWebPageDTO implements DTO
+final class CreateWebPageDTO implements DTO
 {
     /**
      * @var
      */
-    protected $id;
+    private $id;
 
     /**
      * @var
      */
-    protected $author;
+    private $author;
 
     /**
      * @var
      */
-    protected $name;
+    private $name;
 
     /**
      * @var string
      */
-    protected $context;
+    private $context;
 
     /**
      * @var string
      */
-    protected $type;
+    private $type;
 
     /**
      * @param $id

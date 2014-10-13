@@ -24,22 +24,22 @@ final class WriteWebPageCommand implements Command
     /**
      * @var \Black\Component\Page\Domain\Model\WebPageId
      */
-    protected $webPageId;
+    private $webPageId;
 
     /**
      * @var
      */
-    protected $headline;
+    private $headline;
 
     /**
      * @var
      */
-    protected $about;
+    private $about;
 
     /**
      * @var
      */
-    protected $text;
+    private $text;
 
     /**
      * @param WebPageId $webPageId

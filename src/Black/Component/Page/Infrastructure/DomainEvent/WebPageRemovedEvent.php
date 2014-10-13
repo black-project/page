@@ -24,12 +24,12 @@ final class WebPageRemovedEvent extends Event implements DomainEvent
     /**
      * @var
      */
-    protected $webPageId;
+    private $webPageId;
 
     /**
      * @var
      */
-    protected $name;
+    private $name;
 
     /**
      * @param $webPageId

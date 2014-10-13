@@ -24,7 +24,7 @@ final class RemoveWebPageCommand implements Command
     /**
      * @var
      */
-    protected $webPageId;
+    private $webPageId;
 
     /**
      * @param WebPageId $webPageId

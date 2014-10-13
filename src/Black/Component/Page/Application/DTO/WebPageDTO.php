@@ -18,57 +18,57 @@ use Black\DDD\DDDinPHP\Application\DTO\DTO;
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-class WebPageDTO implements DTO
+final class WebPageDTO implements DTO
 {
     /**
      * @var int
      */
-    protected $id;
+    private $id;
 
     /**
      * @var null
      */
-    protected $author;
+    private $author;
 
     /**
      * @var string
      */
-    protected $name;
+    private $name;
 
     /**
      * @var string
      */
-    protected $headline;
+    private $headline;
 
     /**
      * @var string
      */
-    protected $about;
+    private $about;
 
     /**
      * @var string
      */
-    protected $text;
+    private $text;
 
     /**
      * @var
      */
-    protected $creator;
+    private $creator;
 
     /**
      * @var
      */
-    protected $editor;
+    private $editor;
 
     /**
      * @var string
      */
-    protected $context;
+    private $context;
 
     /**
      * @var string
      */
-    protected $type;
+    private $type;
 
     /**
      * @param $id

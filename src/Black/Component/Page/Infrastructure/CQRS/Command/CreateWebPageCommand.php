@@ -24,17 +24,17 @@ final class CreateWebPageCommand implements Command
     /**
      * @var \Black\Component\Page\Domain\Model\WebPageId
      */
-    protected $webPageId;
+    private $webPageId;
 
     /**
      * @var
      */
-    protected $author;
+    private $author;
 
     /**
      * @var
      */
-    protected $name;
+    private $name;
 
     /**
      * @param WebPageId $webPageId
