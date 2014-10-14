@@ -1,4 +1,0 @@
-suites:
-    black_page_suite:
-        namespace: Black\Component\Page
-        spec_path: ./src/Black/Component/Page

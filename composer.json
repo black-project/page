@@ -2,26 +2,37 @@
     "name": "black/page",
     "type": "library",
     "description": "Page library for Black projects",
-    "keywords": ["libary", "Black"],
+    "keywords": ["libary", "black-project", "page"],
     "homepage": "http://www.lablackroom.com",
     "license": "MIT",
     "authors": [
         {
-            "name": "Alexandre Balmes",
-            "email": "abalmes@gmail.com"
+            "name": "Alexandre 'pocky' Balmes",
+            "email": "alexandre@lablackroom.com",
+            "homepage": "http://www.lablackroom.com"
         }
     ],
-    "minimum-stability": "dev",
-    "require": {
-        "php":                      ">=5.4.0",
-        "monolog/monolog":          "~1.10",
-        "symfony/event-dispatcher": "~2.5",
-        "symfony/http-kernel":      "~2.5",
-        "black/common":             "1.*"
-    },
     "autoload": {
         "psr-4": {
             "Black\\Component\\Page\\": "src/Black/Component/Page/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "spec\\": "spec/"
+        }
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "monolog/monolog": "~1.10",
+        "symfony/event-dispatcher": "~2.5",
+        "symfony/http-kernel": "~2.5",
+        "black/common": "~1.0"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "~2.0"
+    },
+    "config": {
+        "bin-dir": "bin"
     }
 }
