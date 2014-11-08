@@ -7,15 +7,9 @@ use PhpSpec\ObjectBehavior;
 
 class WebPageIdSpec extends ObjectBehavior
 {
-    protected $id;
-
     public function let()
     {
-        $pageId = new WebPageId('12345');
-
-        $this->id = $pageId;
-
-        $this->beConstructedWith($pageId->getValue());
+        $this->beConstructedWith(12345);
     }
 
     public function it_is_initializable()
