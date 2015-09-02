@@ -16,7 +16,7 @@ use Black\Component\Page\Infrastructure\DomainEvent\WebPageRemovedEvent;
 use Black\Component\Page\Infrastructure\DomainEvent\WebPageRemovedSubscriber;
 use Black\Component\Page\Infrastructure\Service\WebPageWriteService;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
-use Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class RemoveWebPageHandler
@@ -47,15 +47,15 @@ final class RemoveWebPageHandler implements CommandHandler
     protected $subscriber;
 
     /**
-     * @param WebPageWriteService      $service
-     * @param WebPageManager           $manager
-     * @param TraceableEventDispatcher $eventDispatcher
+     * @param WebPageWriteService $service
+     * @param WebPageManager $manager
+     * @param EventDispatcherInterface $eventDispatcher
      * @param WebPageRemovedSubscriber $subscriber
      */
     public function __construct(
         WebPageWriteService $service,
         WebPageManager $manager,
-        TraceableEventDispatcher $eventDispatcher,
+        EventDispatcherInterface $eventDispatcher,
         WebPageRemovedSubscriber $subscriber
     ) {
         $this->service         = $service;

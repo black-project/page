@@ -13,9 +13,8 @@ namespace Black\Component\Page\Infrastructure\Service;
 use Black\Component\Page\Domain\Exception\WebPageNotFoundException;
 use Black\Component\Page\Domain\Model\WebPageId;
 use Black\Component\Page\Infrastructure\Doctrine\WebPageManager;
-use Black\DDD\DDDinPHP\Infrastructure\Service\InfrastructureService;
 
-class WebPageWriteService implements InfrastructureService
+class WebPageWriteService
 {
     /**
      * @var \Black\Component\Page\Infrastructure\Doctrine\WebPageManager

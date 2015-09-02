@@ -13,10 +13,8 @@ namespace Black\Component\Page\Infrastructure\Service;
 use Black\Component\Page\Domain\Exception\WebPageNotFoundException;
 use Black\Component\Page\Domain\Model\WebPageId;
 use Black\Component\Page\Infrastructure\Doctrine\WebPageManager;
-use Black\DDD\DDDinPHP\Infrastructure\Service\InfrastructureService;
-use Black\DDD\DDDinPHP\Application\Specification\Specification;
 
-class WebPageReadService implements InfrastructureService
+class WebPageReadService
 {
     /**
      * @var \Black\Component\Page\Infrastructure\Doctrine\WebPageManager
@@ -25,20 +23,15 @@ class WebPageReadService implements InfrastructureService
 
     /**
      * @param WebPageManager $manager
-     * @param Specification  $specification
      */
-    public function __construct(
-        WebPageManager $manager,
-        Specification $specification
-    ) {
+    public function __construct(WebPageManager $manager)
+    {
         $this->manager       = $manager;
-        $this->specification = $specification;
     }
 
     /**
-     * @param  WebPageId                                                       $webPageId
+     * @param WebPageId $webPageId
      * @return mixed
-     * @throws \Black\Component\Page\Domain\Exception\WebPageNotFoundException
      */
     public function read(WebPageId $webPageId)
     {

@@ -10,13 +10,12 @@
 
 namespace Black\Component\Page\Application\Service;
 
+use Black\Component\Common\Application\Specification\Specification;
 use Black\Component\Page\Application\DTO\WebPageDTO;
 use Black\Component\Page\Application\DTO\WebPageTransformer;
-use Black\DDD\DDDinPHP\Application\Service\ApplicationService;
-use Black\DDD\DDDinPHP\Application\Specification\Specification;
-use Black\DDD\DDDinPHP\Infrastructure\Service\InfrastructureService;
+use Black\Component\Page\Infrastructure\Service\WebPageReadService as InfrastructureService;
 
-class WebPageReadService implements ApplicationService
+class WebPageReadService
 {
     /**
      * @var \Black\DDD\DDDinPHP\Application\Specification\Specification
@@ -34,9 +33,9 @@ class WebPageReadService implements ApplicationService
     protected $transformer;
 
     /**
-     * @param Specification         $specification
+     * @param Specification $specification
      * @param InfrastructureService $service
-     * @param WebPageTransformer    $transformer
+     * @param WebPageTransformer $transformer
      */
     public function __construct(
         Specification $specification,
@@ -58,9 +57,7 @@ class WebPageReadService implements ApplicationService
         $page = $this->service->read($id);
 
         if ($this->specification->isSatisfiedBy($page)) {
-
             $dto = $this->transformer->transform($page);
-
             return $dto;
         }
     }

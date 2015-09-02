@@ -11,7 +11,6 @@
 namespace Black\Component\Page\Application\Specification;
 
 use Black\Component\Page\Domain\Model\WebPage;
-use Black\DDD\DDDinPHP\Application\Specification\Specification;
 
 /**
  * Class PageIsPublishedSpecification
@@ -19,7 +18,7 @@ use Black\DDD\DDDinPHP\Application\Specification\Specification;
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-final class PageIsPublishedSpecification implements Specification
+final class PageIsPublishedSpecification
 {
     /**
      * @param WebPage $webPage

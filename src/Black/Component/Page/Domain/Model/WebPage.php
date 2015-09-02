@@ -11,8 +11,6 @@
 
 namespace Black\Component\Page\Domain\Model;
 
-use Black\DDD\DDDinPHP\Domain\Model\Entity;
-
 /**
  * Class WebPage
  *
@@ -21,7 +19,7 @@ use Black\DDD\DDDinPHP\Domain\Model\Entity;
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-class WebPage implements Entity
+class WebPage
 {
     /**
      * @var

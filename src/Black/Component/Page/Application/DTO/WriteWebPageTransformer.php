@@ -10,12 +10,10 @@
 
 namespace Black\Component\Page\Application\DTO;
 
+use Black\Component\Page\Domain\Model\WebPage;
 use Black\Component\Page\Domain\Model\WebPageId;
-use Black\DDD\DDDinPHP\Application\DTO\DTO;
-use Black\DDD\DDDinPHP\Application\DTO\Transformer;
-use Black\DDD\DDDinPHP\Domain\Model\Entity;
 
-class WriteWebPageTransformer implements Transformer
+class WriteWebPageTransformer
 {
     /**
      * @var
@@ -38,13 +36,11 @@ class WriteWebPageTransformer implements Transformer
     }
 
     /**
-     * @param  Entity $webPage
+     * @param WebPage $webPage
      * @return mixed
      */
-    public function transform(Entity $webPage)
+    public function transform(WebPage $webPage)
     {
-        $this->verify($webPage, $this->entityClass);
-
         $dto = new $this->dtoClass(
             $webPage->getWebPageId()->getValue(),
             $webPage->getHeadline(),
@@ -56,13 +52,11 @@ class WriteWebPageTransformer implements Transformer
     }
 
     /**
-     * @param  DTO   $webPageDTO
+     * @param WebPageDTO $webPageDTO
      * @return mixed
      */
-    public function reverseTransform(DTO $webPageDTO)
+    public function reverseTransform(WebPageDTO $webPageDTO)
     {
-        $this->verify($webPageDTO, $this->dtoClass);
-
         $webPageId = new WebPageId($webPageDTO->getId());
 
         $entity = new $this->entityClass(
@@ -73,18 +67,5 @@ class WriteWebPageTransformer implements Transformer
         );
 
         return $entity;
-    }
-
-    /**
-     * @param $object
-     * @param $class
-     *
-     * @throws \Exception
-     */
-    protected function verify($object, $class)
-    {
-        if (!$object instanceof $class) {
-            throw new \Exception();
-        }
     }
 }

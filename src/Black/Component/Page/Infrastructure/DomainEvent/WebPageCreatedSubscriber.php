@@ -45,6 +45,7 @@ class WebPageCreatedSubscriber implements EventSubscriberInterface
 
     /**
      * @param WebPageCreatedEvent $event
+     * @return mixed
      */
     public function onWebPageCreated(WebPageCreatedEvent $event)
     {

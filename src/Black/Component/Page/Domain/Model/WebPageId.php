@@ -10,15 +10,13 @@
 
 namespace Black\Component\Page\Domain\Model;
 
-use Black\DDD\DDDinPHP\Domain\Model\ValueObject;
-
 /**
  * Class WebPageId
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-final class WebPageId implements ValueObject
+final class WebPageId
 {
     /**
      * @var

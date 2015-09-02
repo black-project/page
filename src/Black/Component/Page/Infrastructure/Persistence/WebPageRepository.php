@@ -12,7 +12,6 @@
 namespace Black\Component\Page\Infrastructure\Persistence;
 
 use Black\Component\Page\Domain\Model\WebPageId;
-use Black\DDD\DDDinPHP\Infrastructure\Persistence\Repository;
 
 /**
  * Interface WebPageRepository
@@ -20,7 +19,7 @@ use Black\DDD\DDDinPHP\Infrastructure\Persistence\Repository;
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-interface WebPageRepository extends Repository
+interface WebPageRepository
 {
     public function findWebPageByWebPageId(WebPageId $id);
 }

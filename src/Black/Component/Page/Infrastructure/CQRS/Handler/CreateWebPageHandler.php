@@ -16,7 +16,7 @@ use Black\Component\Page\Infrastructure\DomainEvent\WebPageCreatedEvent;
 use Black\Component\Page\Infrastructure\DomainEvent\WebPageCreatedSubscriber;
 use Black\Component\Page\Infrastructure\Service\WebPageWriteService;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
-use Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class CreateWebPageHandler
@@ -47,15 +47,15 @@ final class CreateWebPageHandler implements CommandHandler
     protected $subscriber;
 
     /**
-     * @param WebPageWriteService      $service
-     * @param WebPageManager           $manager
-     * @param TraceableEventDispatcher $eventDispatcher
+     * @param WebPageWriteService $service
+     * @param WebPageManager $manager
+     * @param EventDispatcherInterface $eventDispatcher
      * @param WebPageCreatedSubscriber $subscriber
      */
     public function __construct(
         WebPageWriteService $service,
         WebPageManager $manager,
-        TraceableEventDispatcher $eventDispatcher,
+        EventDispatcherInterface $eventDispatcher,
         WebPageCreatedSubscriber $subscriber
     ) {
         $this->service         = $service;

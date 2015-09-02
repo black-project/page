@@ -10,7 +10,6 @@
 
 namespace Black\Component\Page\Infrastructure\DomainEvent;
 
-use Black\DDD\DDDinPHP\Infrastructure\DomainEvent\DomainEvent;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
@@ -19,7 +18,7 @@ use Symfony\Component\EventDispatcher\Event;
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-final class WebPageCreatedEvent extends Event implements DomainEvent
+final class WebPageCreatedEvent extends Event
 {
     /**
      * @var

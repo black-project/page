@@ -10,10 +10,8 @@
 
 namespace Black\Component\Page\Application\DTO;
 
+use Black\Component\Page\Domain\Model\WebPage;
 use Black\Component\Page\Domain\Model\WebPageId;
-use Black\DDD\DDDinPHP\Application\DTO\DTO;
-use Black\DDD\DDDinPHP\Application\DTO\Transformer;
-use Black\DDD\DDDinPHP\Domain\Model\Entity;
 
 /**
  * Class WebPageTransformer
@@ -21,7 +19,7 @@ use Black\DDD\DDDinPHP\Domain\Model\Entity;
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-class WebPageTransformer implements Transformer
+class WebPageTransformer
 {
     /**
      * @var
@@ -44,13 +42,12 @@ class WebPageTransformer implements Transformer
     }
 
     /**
-     * @param  Entity $webPage
+     * @param WebPage $webPage
      * @return mixed
+     * @throws \Exception
      */
-    public function transform(Entity $webPage)
+    public function transform(WebPage $webPage)
     {
-        $this->verify($webPage, $this->entityClass);
-
         $dto = new $this->dtoClass(
             $webPage->getWebPageId()->getValue(),
             $webPage->getAuthor(),
@@ -66,13 +63,12 @@ class WebPageTransformer implements Transformer
     }
 
     /**
-     * @param  DTO   $webPageDTO
+     * @param WebPageDTO $webPageDTO
      * @return mixed
+     * @throws \Exception
      */
-    public function reverseTransform(DTO $webPageDTO)
+    public function reverseTransform(WebPageDTO $webPageDTO)
     {
-        $this->verify($webPageDTO, $this->dtoClass);
-
         $webPageId = new WebPageId($webPageDTO->getId());
 
         $entity = new $this->entityClass(

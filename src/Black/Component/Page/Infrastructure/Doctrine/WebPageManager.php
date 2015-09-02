@@ -11,17 +11,16 @@
 
 namespace Black\Component\Page\Infrastructure\Doctrine;
 
-use Black\Component\Common\Infrastructure\Doctrine\CommonManager;
 use Black\Component\Page\Domain\Model\WebPageId;
 use Black\Component\Page\Domain\Model\WebPage;
-
+use Black\Component\Common\Infrastructure\Doctrine\Entitymanager;
 /**
  * Class WebPageManager
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-class WebPageManager extends CommonManager
+class WebPageManager extends EntityManager
 {
     /**
      * @param  WebPageId $id
