@@ -11,40 +11,40 @@
 namespace Black\Component\Page\Application\Service;
 
 use Black\Component\Common\Application\Specification\Specification;
+use Black\Component\Page\Application\DTO\WebPageAssembler;
 use Black\Component\Page\Application\DTO\WebPageDTO;
-use Black\Component\Page\Application\DTO\WebPageTransformer;
 use Black\Component\Page\Infrastructure\Service\WebPageReadService as InfrastructureService;
 
 class WebPageReadService
 {
     /**
-     * @var \Black\DDD\DDDinPHP\Application\Specification\Specification
+     * @var Specification
      */
     protected $specification;
 
     /**
-     * @var \Black\DDD\DDDinPHP\Infrastructure\Service\InfrastructureService
+     * @var InfrastructureService
      */
     protected $service;
 
     /**
-     * @var \Black\Component\Page\Application\DTO\WebPageTransformer
+     * @var
      */
     protected $transformer;
 
     /**
      * @param Specification $specification
      * @param InfrastructureService $service
-     * @param WebPageTransformer $transformer
+     * @param WebPageAssembler $assembler
      */
     public function __construct(
         Specification $specification,
         InfrastructureService $service,
-        WebPageTransformer $transformer
+        WebPageAssembler $assembler
     ) {
         $this->specification = $specification;
         $this->service       = $service;
-        $this->transformer   = $transformer;
+        $this->assembler   = $assembler;
     }
 
     /**

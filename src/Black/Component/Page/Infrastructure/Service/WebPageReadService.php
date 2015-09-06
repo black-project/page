@@ -12,21 +12,21 @@ namespace Black\Component\Page\Infrastructure\Service;
 
 use Black\Component\Page\Domain\Exception\WebPageNotFoundException;
 use Black\Component\Page\Domain\Model\WebPageId;
-use Black\Component\Page\Infrastructure\Doctrine\WebPageManager;
+use Black\Component\Page\Domain\Model\WebPageReadRepository;
 
 class WebPageReadService
 {
     /**
-     * @var \Black\Component\Page\Infrastructure\Doctrine\WebPageManager
+     * @var WebPageReadRepository
      */
-    protected $manager;
+    protected $repository;
 
     /**
-     * @param WebPageManager $manager
+     * @param WebPageReadRepository $repository
      */
-    public function __construct(WebPageManager $manager)
+    public function __construct(WebPageReadRepository $repository)
     {
-        $this->manager = $manager;
+        $this->repository = $repository;
     }
 
     /**
@@ -35,7 +35,7 @@ class WebPageReadService
      */
     public function read(WebPageId $webPageId)
     {
-        $page = $this->manager->find($webPageId);
+        $page = $this->repository->find($webPageId);
 
         if (null === $page) {
             throw new WebPageNotFoundException();

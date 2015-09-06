@@ -13,7 +13,7 @@ namespace Black\Component\Page\Application\DTO;
 use Black\Component\Page\Domain\Model\WebPage;
 use Black\Component\Page\Domain\Model\WebPageId;
 
-class WriteWebPageTransformer
+class WriteWebPageAssembler
 {
     /**
      * @var

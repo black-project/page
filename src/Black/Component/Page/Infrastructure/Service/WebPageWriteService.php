@@ -12,31 +12,41 @@ namespace Black\Component\Page\Infrastructure\Service;
 
 use Black\Component\Page\Domain\Exception\WebPageNotFoundException;
 use Black\Component\Page\Domain\Model\WebPageId;
+use Black\Component\Page\Domain\Model\WebPageWriteRepository;
 use Black\Component\Page\Infrastructure\Doctrine\WebPageManager;
 
 class WebPageWriteService
 {
     /**
-     * @var \Black\Component\Page\Infrastructure\Doctrine\WebPageManager
+     * @var WebPageWriteRepository
      */
-    protected $manager;
+    protected $repository;
 
     /**
-     * @param WebPageManager $webPageManager
+     * @var
      */
-    public function __construct(WebPageManager $webPageManager)
+    protected $class;
+
+    /**
+     * @param WebPageWriteRepository $repository
+     */
+    public function __construct(WebPageWriteRepository $repository)
     {
-        $this->manager = $webPageManager;
+        $this->repository = $repository;
+        $this->class = $repository->getClassName();
     }
 
     /**
-     * return mixed
+     * @param WebPageId $webPageId
+     * @param $author
+     * @param $name
+     * @return mixed
      */
     public function create(WebPageId $webPageId, $author, $name)
     {
-        $webPage = $this->manager->createWebPage($webPageId, $author, $name);
+        $webPage = new $this->class($webPageId, $author, $name);
 
-        $this->manager->add($webPage);
+        $this->repository->add($webPage);
 
         return $webPage;
     }
@@ -52,14 +62,14 @@ class WebPageWriteService
      */
     public function write(WebPageId $webPageId, $headline, $about, $text)
     {
-        $webPage = $this->manager->find($webPageId);
+        $webPage = $this->repository->find($webPageId);
 
         if (null === $webPage) {
             throw new WebPageNotFoundException();
         }
 
         $webPage->write($headline, $about, $text);
-        $this->manager->add($webPage);
+        $this->repository->add($webPage);
 
         return $webPage;
     }
@@ -73,7 +83,7 @@ class WebPageWriteService
      */
     public function publish(WebPageId $webPageId, $dateTime = 'now')
     {
-        $webPage = $this->manager->find($webPageId);
+        $webPage = $this->repository->find($webPageId);
 
         if (null === $webPage) {
             throw new WebPageNotFoundException();
@@ -84,7 +94,7 @@ class WebPageWriteService
         }
 
         $webPage->publish($dateTime);
-        $this->manager->add($webPage);
+        $this->repository->add($webPage);
 
         return $webPage;
     }
@@ -97,14 +107,14 @@ class WebPageWriteService
      */
     public function depublish(WebPageId $webPageId)
     {
-        $webPage = $this->manager->find($webPageId);
+        $webPage = $this->repository->find($webPageId);
 
         if (null === $webPage) {
             throw new WebPageNotFoundException();
         }
 
         $webPage->depublish();
-        $this->manager->add($webPage);
+        $this->repository->add($webPage);
 
         return $webPage;
     }
@@ -117,13 +127,13 @@ class WebPageWriteService
      */
     public function remove(WebPageId $webPageId)
     {
-        $webPage = $this->manager->find($webPageId);
+        $webPage = $this->repository->find($webPageId);
 
         if (null === $webPage) {
             throw new WebPageNotFoundException();
         }
 
-        $this->manager->remove($webPage);
+        $this->repository->remove($webPage);
 
         return $webPage;
     }

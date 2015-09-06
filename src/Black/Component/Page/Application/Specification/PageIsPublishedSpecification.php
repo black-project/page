@@ -27,6 +27,6 @@ final class PageIsPublishedSpecification
      */
     public function isSatisfiedBy(WebPage $webPage)
     {
-        return (bool) $webPage->isPublished();
+        return (bool) true === $webPage->isPublished();
     }
 }
