@@ -12,8 +12,8 @@ namespace Black\Component\Page\Infrastructure\CQRS\Handler;
 
 use Black\Component\Page\Infrastructure\CQRS\Command\PublishWebPageCommand;
 use Black\Component\Page\Infrastructure\Doctrine\WebPageManager;
-use Black\Component\Page\Infrastructure\DomainEvent\WebPagePublishedEvent;
-use Black\Component\Page\Infrastructure\DomainEvent\WebPagePublishedSubscriber;
+use Black\Component\Page\Domain\Event\WebPageDepublishedEvent;
+use Black\Component\Page\Infrastructure\Listener\WebageDepublishedListener;
 use Black\Component\Page\Infrastructure\Service\WebPageWriteService;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -42,26 +42,26 @@ final class DepublishWebPageHandler implements CommandHandler
     protected $eventDispatcher;
 
     /**
-     * @var \Black\Component\Page\Infrastructure\DomainEvent\WebPagePublishedSubscriber
+     * @var \Black\Component\Page\Infrastructure\Listener\WebPagePublishedListener
      */
-    protected $subscriber;
+    protected $listener;
 
     /**
      * @param WebPageWriteService $service
      * @param WebPageManager $manager
      * @param EventDispatcherInterface $eventDispatcher
-     * @param WebPagePublishedSubscriber $subscriber
+     * @param WebageDepublishedListener $listener
      */
     public function __construct(
         WebPageWriteService $service,
         WebPageManager $manager,
         EventDispatcherInterface $eventDispatcher,
-        WebPagePublishedSubscriber $subscriber
+        WebageDepublishedListener $listener
     ) {
         $this->service         = $service;
         $this->manager         = $manager;
         $this->eventDispatcher = $eventDispatcher;
-        $this->subscriber      = $subscriber;
+        $this->listener      = $listener;
     }
 
     /**
@@ -74,8 +74,8 @@ final class DepublishWebPageHandler implements CommandHandler
 
         $this->manager->flush();
 
-        $event = new WebPagePublishedEvent($page->getWebPageId()->getValue(), $page->getName());
-        $this->eventDispatcher->addSubscriber($this->subscriber);
+        $event = new WebPageDepublishedEvent($page->getWebPageId()->getValue(), $page->getName());
+        $this->eventDispatcher->addSubscriber($this->listener);
         $this->eventDispatcher->dispatch('web_page.depublished', $event);
     }
 }

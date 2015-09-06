@@ -26,7 +26,7 @@ class WebPageReadService
      */
     public function __construct(WebPageManager $manager)
     {
-        $this->manager       = $manager;
+        $this->manager = $manager;
     }
 
     /**

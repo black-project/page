@@ -8,17 +8,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Black\Component\Page\Infrastructure\DomainEvent;
+namespace Black\Component\Page\Domain\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Class WebPagePublishedEvent
+ * Class WebPageCreatedEvent
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-final class WebPagePublishedEvent extends Event
+final class WebPageCreatedEvent extends Event
 {
     /**
      * @var
@@ -45,6 +45,22 @@ final class WebPagePublishedEvent extends Event
      */
     public function execute()
     {
-        return sprintf('The page %s was successfully published for %s identifier', $this->name, $this->webPageId);
+        return sprintf('The page %s was successfully created with %s identifier', $this->name, $this->webPageId);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWebPageId()
+    {
+        return $this->webPageId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }

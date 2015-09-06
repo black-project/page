@@ -8,17 +8,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Black\Component\Page\Infrastructure\DomainEvent;
+namespace Black\Component\Page\Domain\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Class WebPageRemovedEvent
+ * Class WebPageWritedEvent
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-final class WebPageRemovedEvent extends Event
+final class WebPageWritedEvent extends Event
 {
     /**
      * @var
@@ -45,6 +45,6 @@ final class WebPageRemovedEvent extends Event
      */
     public function execute()
     {
-        return sprintf('The page %s with %s identifier is terminated.', $this->name, $this->webPageId);
+        return sprintf('The page %s was successfully writed for %s identifier', $this->name, $this->webPageId);
     }
 }

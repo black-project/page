@@ -13,7 +13,8 @@ namespace Black\Component\Page\Infrastructure\Doctrine;
 
 use Black\Component\Page\Domain\Model\WebPageId;
 use Black\Component\Page\Domain\Model\WebPage;
-use Black\Component\Common\Infrastructure\Doctrine\Entitymanager;
+use Black\Component\Common\Infrastructure\Doctrine\EntityManager;
+
 /**
  * Class WebPageManager
  *

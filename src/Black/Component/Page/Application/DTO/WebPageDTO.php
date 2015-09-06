@@ -194,7 +194,7 @@ final class WebPageDTO
      */
     public function unserialize($serialized)
     {
-       return list(
+        return list(
            $this->id,
            $this->author,
            $this->name,

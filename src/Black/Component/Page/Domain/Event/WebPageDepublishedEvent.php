@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Black\Component\Page\Infrastructure\DomainEvent;
+namespace Black\Component\Page\Domain\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 

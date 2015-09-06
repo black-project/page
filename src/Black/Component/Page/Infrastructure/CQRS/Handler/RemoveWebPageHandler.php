@@ -12,8 +12,8 @@ namespace Black\Component\Page\Infrastructure\CQRS\Handler;
 
 use Black\Component\Page\Infrastructure\CQRS\Command\RemoveWebPageCommand;
 use Black\Component\Page\Infrastructure\Doctrine\WebPageManager;
-use Black\Component\Page\Infrastructure\DomainEvent\WebPageRemovedEvent;
-use Black\Component\Page\Infrastructure\DomainEvent\WebPageRemovedSubscriber;
+use Black\Component\Page\Domain\Event\WebPageRemovedEvent;
+use Black\Component\Page\Infrastructure\Listener\WebPageRemovedListener;
 use Black\Component\Page\Infrastructure\Service\WebPageWriteService;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -42,7 +42,7 @@ final class RemoveWebPageHandler implements CommandHandler
     protected $eventDispatcher;
 
     /**
-     * @var \Black\Component\Page\Infrastructure\DomainEvent\WebPageRemovedSubscriber
+     * @var \Black\Component\Page\Infrastructure\Listener\WebPageRemovedListener
      */
     protected $subscriber;
 
@@ -50,18 +50,18 @@ final class RemoveWebPageHandler implements CommandHandler
      * @param WebPageWriteService $service
      * @param WebPageManager $manager
      * @param EventDispatcherInterface $eventDispatcher
-     * @param WebPageRemovedSubscriber $subscriber
+     * @param WebPageRemovedListener $listener
      */
     public function __construct(
         WebPageWriteService $service,
         WebPageManager $manager,
         EventDispatcherInterface $eventDispatcher,
-        WebPageRemovedSubscriber $subscriber
+        WebPageRemovedListener $listener
     ) {
         $this->service         = $service;
         $this->manager         = $manager;
         $this->eventDispatcher = $eventDispatcher;
-        $this->subscriber      = $subscriber;
+        $this->listener        = $listener;
     }
 
     /**
@@ -75,7 +75,7 @@ final class RemoveWebPageHandler implements CommandHandler
         $this->manager->flush();
 
         $event = new WebPageRemovedEvent($page->getWebPageId()->getValue(), $page->getName());
-        $this->eventDispatcher->addSubscriber($this->subscriber);
+        $this->eventDispatcher->addSubscriber($this->listener);
         $this->eventDispatcher->dispatch('web_page.removed', $event);
     }
 }

@@ -8,17 +8,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Black\Component\Page\Infrastructure\DomainEvent;
+namespace Black\Component\Page\Domain\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Class WebPageWritedEvent
+ * Class WebPagePublishedEvent
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-final class WebPageWritedEvent extends Event
+final class WebPagePublishedEvent extends Event
 {
     /**
      * @var
@@ -45,6 +45,6 @@ final class WebPageWritedEvent extends Event
      */
     public function execute()
     {
-        return sprintf('The page %s was successfully writed for %s identifier', $this->name, $this->webPageId);
+        return sprintf('The page %s was successfully published for %s identifier', $this->name, $this->webPageId);
     }
 }

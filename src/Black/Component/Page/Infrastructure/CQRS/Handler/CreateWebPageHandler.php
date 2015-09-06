@@ -12,8 +12,8 @@ namespace Black\Component\Page\Infrastructure\CQRS\Handler;
 
 use Black\Component\Page\Infrastructure\CQRS\Command\CreateWebPageCommand;
 use Black\Component\Page\Infrastructure\Doctrine\WebPageManager;
-use Black\Component\Page\Infrastructure\DomainEvent\WebPageCreatedEvent;
-use Black\Component\Page\Infrastructure\DomainEvent\WebPageCreatedSubscriber;
+use Black\Component\Page\Domain\Event\WebPageCreatedEvent;
+use Black\Component\Page\Infrastructure\Listener\WebPageCreatedListener;
 use Black\Component\Page\Infrastructure\Service\WebPageWriteService;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -42,26 +42,26 @@ final class CreateWebPageHandler implements CommandHandler
     protected $eventDispatcher;
 
     /**
-     * @var \Black\Component\Page\Infrastructure\DomainEvent\WebPageCreatedSubscriber
+     * @var \Black\Component\Page\Infrastructure\Listener\WebPageCreatedListener
      */
-    protected $subscriber;
+    protected $listener;
 
     /**
      * @param WebPageWriteService $service
      * @param WebPageManager $manager
      * @param EventDispatcherInterface $eventDispatcher
-     * @param WebPageCreatedSubscriber $subscriber
+     * @param WebPageCreatedListener $listener
      */
     public function __construct(
         WebPageWriteService $service,
         WebPageManager $manager,
         EventDispatcherInterface $eventDispatcher,
-        WebPageCreatedSubscriber $subscriber
+        WebPageCreatedListener $listener
     ) {
         $this->service         = $service;
         $this->manager         = $manager;
         $this->eventDispatcher = $eventDispatcher;
-        $this->subscriber      = $subscriber;
+        $this->listener        = $listener;
     }
 
     /**
@@ -73,8 +73,8 @@ final class CreateWebPageHandler implements CommandHandler
         $page = $this->service->create($command->getWebPageId(), $command->getAuthor(), $command->getName());
         $this->manager->flush();
 
-        $event = new WebPageCreatedEvent($page->getWebPageId()->getValue(), $page->getName(),$page->getDateCreated());
-        $this->eventDispatcher->addSubscriber($this->subscriber);
+        $event = new WebPageCreatedEvent($page->getWebPageId()->getValue(), $page->getName(), $page->getDateCreated());
+        $this->eventDispatcher->addSubscriber($this->listener);
 
         $this->eventDispatcher->dispatch('web_page.created', $event);
     }

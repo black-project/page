@@ -12,8 +12,8 @@ namespace Black\Component\Page\Infrastructure\CQRS\Handler;
 
 use Black\Component\Page\Infrastructure\CQRS\Command\WriteWebPageCommand;
 use Black\Component\Page\Infrastructure\Doctrine\WebPageManager;
-use Black\Component\Page\Infrastructure\DomainEvent\WebPageWritedEvent;
-use Black\Component\Page\Infrastructure\DomainEvent\WebPageWritedSubscriber;
+use Black\Component\Page\Domain\Event\WebPageWritedEvent;
+use Black\Component\Page\Infrastructure\Listener\WebPageWritedListener;
 use Black\Component\Page\Infrastructure\Service\WebPageWriteService;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -42,7 +42,7 @@ final class WriteWebPageHandler implements CommandHandler
     protected $eventDispatcher;
 
     /**
-     * @var \Black\Component\Page\Infrastructure\DomainEvent\WebPageWritedSubscriber
+     * @var \Black\Component\Page\Infrastructure\Listener\WebPageWritedListener
      */
     protected $subscriber;
 
@@ -50,18 +50,18 @@ final class WriteWebPageHandler implements CommandHandler
      * @param WebPageWriteService $service
      * @param WebPageManager $manager
      * @param EventDispatcherInterface $eventDispatcher
-     * @param WebPageWritedSubscriber $subscriber
+     * @param WebPageWritedListener $subscriber
      */
     public function __construct(
         WebPageWriteService $service,
         WebPageManager $manager,
         EventDispatcherInterface $eventDispatcher,
-        WebPageWritedSubscriber $subscriber
+        WebPageWritedListener $listener
     ) {
         $this->service         = $service;
         $this->manager         = $manager;
         $this->eventDispatcher = $eventDispatcher;
-        $this->subscriber      = $subscriber;
+        $this->listener        = $listener;
     }
 
     /**
@@ -80,7 +80,7 @@ final class WriteWebPageHandler implements CommandHandler
         $this->manager->flush();
 
         $event = new WebPageWritedEvent($page->getWebPageId()->getValue(), $page->getName());
-        $this->eventDispatcher->addSubscriber($this->subscriber);
+        $this->eventDispatcher->addSubscriber($this->listener);
         $this->eventDispatcher->dispatch('web_page.writed', $event);
     }
 }

@@ -8,18 +8,19 @@
  * file that was distributed with this source code.
  */
 
-namespace Black\Component\Page\Infrastructure\DomainEvent;
+namespace Black\Component\Page\Infrastructure\Listener;
 
+use Black\Component\Page\Domain\Event\WebPageRemovedEvent;
 use Monolog\Logger;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * Class WebPageWritedSubscriber
+ * Class WebPageRemovedListener
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-class WebPageWritedSubscriber implements EventSubscriberInterface
+class WebPageRemovedListener implements EventSubscriberInterface
 {
     /**
      * @param Logger $logger
@@ -35,16 +36,16 @@ class WebPageWritedSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            'web_page.writed' => [
-                'onWebPageWrited', 0
+            'web_page.removed' => [
+                'onWebPageRemoved', 0
             ]
         ];
     }
 
     /**
-     * @param WebPageWritedEvent $event
+     * @param WebPageRemovedEvent $event
      */
-    public function onWebPageWrited(WebPageWritedEvent $event)
+    public function onWebPageRemoved(WebPageRemovedEvent $event)
     {
         $this->logger->info($event->execute());
     }

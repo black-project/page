@@ -132,7 +132,7 @@ final class WriteWebPageDTO
      */
     public function unserialize($serialized)
     {
-       return list(
+        return list(
            $this->id,
            $this->headline,
            $this->about,
