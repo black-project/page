@@ -10,10 +10,9 @@
 
 namespace Black\Component\Page\Infrastructure\Service;
 
-use Black\Component\Page\Domain\Exception\WebPageNotFoundException;
+use Black\Component\Page\Domain\Model\WebPage;
 use Black\Component\Page\Domain\Model\WebPageId;
 use Black\Component\Page\Domain\Model\WebPageWriteRepository;
-use Black\Component\Page\Infrastructure\Doctrine\WebPageManager;
 
 class WebPageWriteService
 {
@@ -52,22 +51,14 @@ class WebPageWriteService
     }
 
     /**
-     * @param WebPageId $webPageId
+     * @param WebPage $webPage
      * @param $headline
      * @param $about
      * @param $text
-     *
-     * @return mixed
-     * @throws \Black\Component\Page\Domain\Exception\WebPageNotFoundException
+     * @return WebPage
      */
-    public function write(WebPageId $webPageId, $headline, $about, $text)
+    public function write(WebPage $webPage, $headline, $about, $text)
     {
-        $webPage = $this->repository->find($webPageId);
-
-        if (null === $webPage) {
-            throw new WebPageNotFoundException();
-        }
-
         $webPage->write($headline, $about, $text);
         $this->repository->add($webPage);
 
@@ -75,20 +66,12 @@ class WebPageWriteService
     }
 
     /**
-     * @param WebPageId $webPageId
-     * @param string    $dateTime
-     *
-     * @return mixed
-     * @throws \Black\Component\Page\Domain\Exception\WebPageNotFoundException
+     * @param WebPage $webPage
+     * @param string $dateTime
+     * @return WebPage
      */
-    public function publish(WebPageId $webPageId, $dateTime = 'now')
+    public function publish(WebPage $webPage, $dateTime = 'now')
     {
-        $webPage = $this->repository->find($webPageId);
-
-        if (null === $webPage) {
-            throw new WebPageNotFoundException();
-        }
-
         if ('now' === $dateTime) {
             $dateTime = new \DateTime();
         }
@@ -100,19 +83,11 @@ class WebPageWriteService
     }
 
     /**
-     * @param  WebPageId $webPageId
-     * @return mixed
-     *
-     * @throws \Black\Component\Page\Domain\Exception\WebPageNotFoundException
+     * @param WebPage $webPage
+     * @return WebPage
      */
-    public function depublish(WebPageId $webPageId)
+    public function depublish(WebPage $webPage)
     {
-        $webPage = $this->repository->find($webPageId);
-
-        if (null === $webPage) {
-            throw new WebPageNotFoundException();
-        }
-
         $webPage->depublish();
         $this->repository->add($webPage);
 
@@ -120,19 +95,11 @@ class WebPageWriteService
     }
 
     /**
-     * @param WebPageId $webPageId
-     *
-     * @return mixed
-     * @throws \Black\Component\Page\Domain\Exception\WebPageNotFoundException
+     * @param WebPage $webPage
+     * @return WebPage
      */
-    public function remove(WebPageId $webPageId)
+    public function remove(WebPage $webPage)
     {
-        $webPage = $this->repository->find($webPageId);
-
-        if (null === $webPage) {
-            throw new WebPageNotFoundException();
-        }
-
         $this->repository->remove($webPage);
 
         return $webPage;

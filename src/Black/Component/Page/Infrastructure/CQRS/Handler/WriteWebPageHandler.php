@@ -10,11 +10,11 @@
 
 namespace Black\Component\Page\Infrastructure\CQRS\Handler;
 
+use Black\Component\Page\Domain\Model\WebPageReadRepository;
 use Black\Component\Page\Infrastructure\CQRS\Command\WriteWebPageCommand;
-use Black\Component\Page\Infrastructure\Doctrine\WebPageManager;
-use Black\Component\Page\Domain\Event\WebPageWritedEvent;
-use Black\Component\Page\Infrastructure\Listener\WebPageWritedListener;
+use Black\Component\Page\Domain\Event\WebPageWriteEvent;
 use Black\Component\Page\Infrastructure\Service\WebPageWriteService;
+use Black\Component\Page\WebPageDomainEvents;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -27,41 +27,33 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 final class WriteWebPageHandler implements CommandHandler
 {
     /**
-     * @var \Black\Component\Page\Infrastructure\Service\WebPageWriteService
+     * @var WebPageWriteService
      */
     protected $service;
 
     /**
-     * @var WebPageManager
+     * @var WebPageReadRepository
      */
-    protected $manager;
+    protected $repository;
 
     /**
-     * @var \Symfony\Component\EventDispatcher\EventDispatcher
+     * @var EventDispatcherInterface
      */
     protected $eventDispatcher;
 
     /**
-     * @var \Black\Component\Page\Infrastructure\Listener\WebPageWritedListener
-     */
-    protected $subscriber;
-
-    /**
      * @param WebPageWriteService $service
-     * @param WebPageManager $manager
+     * @param WebPageReadRepository $repository
      * @param EventDispatcherInterface $eventDispatcher
-     * @param WebPageWritedListener $subscriber
      */
     public function __construct(
         WebPageWriteService $service,
-        WebPageManager $manager,
-        EventDispatcherInterface $eventDispatcher,
-        WebPageWritedListener $listener
+        WebPageReadRepository $repository,
+        EventDispatcherInterface $eventDispatcher
     ) {
         $this->service         = $service;
-        $this->manager         = $manager;
+        $this->repository      = $repository;
         $this->eventDispatcher = $eventDispatcher;
-        $this->listener        = $listener;
     }
 
     /**
@@ -77,10 +69,9 @@ final class WriteWebPageHandler implements CommandHandler
             $command->getText()
         );
 
-        $this->manager->flush();
+        $this->repository->flush();
 
-        $event = new WebPageWritedEvent($page->getWebPageId()->getValue(), $page->getName());
-        $this->eventDispatcher->addSubscriber($this->listener);
-        $this->eventDispatcher->dispatch('web_page.writed', $event);
+        $event = new WebPageWriteEvent($page->getWebPageId()->getValue(), $page->getName());
+        $this->eventDispatcher->dispatch(WebPageDomainEvents::WEBPAGE_DOMAIN_WRITE, $event);
     }
 }
