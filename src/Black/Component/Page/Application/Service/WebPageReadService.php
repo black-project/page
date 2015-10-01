@@ -13,6 +13,7 @@ namespace Black\Component\Page\Application\Service;
 use Black\Component\Common\Application\Specification\Specification;
 use Black\Component\Page\Application\DTO\WebPageAssembler;
 use Black\Component\Page\Application\DTO\WebPageDTO;
+use Black\Component\Page\Application\Specification\PageIsPublishedSpecification;
 use Black\Component\Page\Infrastructure\Service\WebPageReadService as InfrastructureService;
 
 class WebPageReadService
@@ -33,12 +34,12 @@ class WebPageReadService
     protected $transformer;
 
     /**
-     * @param Specification $specification
+     * @param PageIsPublishedSpecification $specification
      * @param InfrastructureService $service
      * @param WebPageAssembler $assembler
      */
     public function __construct(
-        Specification $specification,
+        PageIsPublishedSpecification $specification,
         InfrastructureService $service,
         WebPageAssembler $assembler
     ) {
@@ -56,7 +57,7 @@ class WebPageReadService
     {
         $page = $this->service->read($id);
 
-        if ($this->specification->isSatisfiedBy($page)) {
+        if (true === $this->specification->isSatisfiedBy($page)) {
             $dto = $this->transformer->transform($page);
             return $dto;
         }
