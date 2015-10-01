@@ -10,7 +10,7 @@
 
 namespace Black\Component\Page\Infrastructure\CQRS\Handler;
 
-use Black\Component\Page\Domain\Model\WebPageReadRepository;
+use Black\Component\Page\Domain\Model\WebPageWriteRepository;
 use Black\Component\Page\Infrastructure\CQRS\Command\CreateWebPageCommand;
 use Black\Component\Page\Domain\Event\WebPageCreatedEvent;
 use Black\Component\Page\Infrastructure\Service\WebPageWriteService;
@@ -32,7 +32,7 @@ final class CreateWebPageHandler implements CommandHandler
     protected $service;
 
     /**
-     * @var WebPageReadRepository
+     * @var WebPageWriteRepository
      */
     protected $repository;
 
@@ -43,12 +43,12 @@ final class CreateWebPageHandler implements CommandHandler
 
     /**
      * @param WebPageWriteService $service
-     * @param WebPageReadRepository $repository
+     * @param WebPageWriteRepository $repository
      * @param EventDispatcherInterface $eventDispatcher
      */
     public function __construct(
         WebPageWriteService $service,
-        WebPageReadRepository $repository,
+        WebPageWriteRepository $repository,
         EventDispatcherInterface $eventDispatcher
     ) {
         $this->service         = $service;

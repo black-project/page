@@ -43,8 +43,8 @@ final class WebPagePublishedEvent extends Event
     /**
      * @return string
      */
-    public function execute()
+    public function message()
     {
-        return sprintf('The page %s was successfully published for %s identifier', $this->name, $this->webPageId);
+        return "The page {$this->name} was successfully published for {$this->webPageId} identifier";
     }
 }

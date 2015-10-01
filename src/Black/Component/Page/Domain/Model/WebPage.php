@@ -82,14 +82,12 @@ class WebPage
     /**
      * Construct the WebPage
      */
-    public function __construct(WebPageId $id, $name, $author, $headline = null, $about = null, $text = null)
+    public function __construct(WebPageId $id, $author, $name, $slug)
     {
         $this->webPageId    = $id;
         $this->name         = $name;
+        $this->slug         = $slug;
         $this->author       = $author;
-        $this->headline     = $headline;
-        $this->about        = $about;
-        $this->text         = $text;
         $this->dateCreated  = new \DateTime();
         $this->dateModified = new \DateTime();
     }

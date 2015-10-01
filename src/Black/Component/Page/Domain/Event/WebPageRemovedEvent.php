@@ -43,8 +43,8 @@ final class WebPageRemovedEvent extends Event
     /**
      * @return string
      */
-    public function execute()
+    public function message()
     {
-        return sprintf('The page %s with %s identifier is terminated.', $this->name, $this->webPageId);
+        return "The page {$this->name} with {$this->webPageId} identifier is terminated.";
     }
 }

@@ -43,9 +43,9 @@ final class WebPageCreatedEvent extends Event
     /**
      * @return string
      */
-    public function execute()
+    public function message()
     {
-        return sprintf('The page %s was successfully created with %s identifier', $this->name, $this->webPageId);
+        return "The page {$this->name} was successfully created with {$this->webPageId} identifier";
     }
 
     /**

@@ -13,6 +13,7 @@ namespace Black\Component\Page\Infrastructure\Service;
 use Black\Component\Page\Domain\Model\WebPage;
 use Black\Component\Page\Domain\Model\WebPageId;
 use Black\Component\Page\Domain\Model\WebPageWriteRepository;
+use Cocur\Slugify\Slugify;
 
 class WebPageWriteService
 {
@@ -43,7 +44,8 @@ class WebPageWriteService
      */
     public function create(WebPageId $webPageId, $author, $name)
     {
-        $webPage = new $this->class($webPageId, $author, $name);
+        $slug = (new Slugify())->slugify($name);
+        $webPage = new $this->class($webPageId, $author, $name, $slug);
 
         $this->repository->add($webPage);
 

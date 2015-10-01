@@ -65,7 +65,7 @@ class WritePageController
                 new WebPageId($page->getId()),
                 $page->getHeadline(),
                 $page->getAbout(),
-                $page->getText()
+                file_get_contents($page->getText())
             ));
     }
 }
