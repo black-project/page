@@ -51,7 +51,5 @@ class WebPageCreatedListener implements EventSubscriberInterface
     public function onWebPageCreated(WebPageCreatedEvent $event)
     {
         $this->logger->info($event->execute());
-
-        return $event->getWebPageId();
     }
 }
