@@ -10,8 +10,8 @@
 
 namespace Black\Component\Page\Infrastructure\CQRS\Handler;
 
-use Black\Component\Page\Domain\Model\WebPageReadRepository;
-use Black\Component\Page\Infrastructure\CQRS\Command\PublishWebPageCommand;
+use Black\Component\Page\Domain\Model\WebPageWriteRepository;
+use Black\Component\Page\Infrastructure\CQRS\Command\DepublishWebPageCommand;
 use Black\Component\Page\Domain\Event\WebPageDepublishedEvent;
 use Black\Component\Page\Infrastructure\Service\WebPageWriteService;
 use Black\Component\Page\WebPageDomainEvents;
@@ -43,26 +43,26 @@ final class DepublishWebPageHandler implements CommandHandler
 
     /**
      * @param WebPageWriteService $service
-     * @param WebPageReadRepository $repository
+     * @param WebPageWriteRepository $repository
      * @param EventDispatcherInterface $eventDispatcher
      */
     public function __construct(
         WebPageWriteService $service,
-        WebPageReadRepository $repository,
+        WebPageWriteRepository $repository,
         EventDispatcherInterface $eventDispatcher
     ) {
         $this->service         = $service;
-        $this->repositor       = $repository;
+        $this->repository      = $repository;
         $this->eventDispatcher = $eventDispatcher;
     }
 
     /**
-     * @param  PublishWebPageCommand $command
+     * @param  DepublishWebPageCommand $command
      * @return mixed
      */
-    public function handle(PublishWebPageCommand $command)
+    public function handle(DepublishWebPageCommand $command)
     {
-        $page = $this->service->depublish($command->getWebPageId());
+        $page = $this->service->depublish($command->getWebPage());
 
         $this->repository->flush();
 

@@ -10,7 +10,7 @@
 
 namespace Black\Component\Page\Infrastructure\CQRS\Command;
 
-use Black\Component\Page\Domain\Model\WebPageId;
+use Black\Component\Page\Domain\Model\WebPage;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
 
 /**
@@ -22,23 +22,23 @@ use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
 final class PublishWebPageCommand implements Command
 {
     /**
-     * @var \Black\Component\Page\Domain\Model\WebPageId
+     * @var WebPage
      */
-    private $webPageId;
+    private $webPage;
 
     /**
-     * @param WebPageId $webPageId
+     * @param WebPage $webPage
      */
-    public function __construct(WebPageId $webPageId)
+    public function __construct(WebPage $webPage)
     {
-        $this->webPageId = $webPageId;
+        $this->webPage = $webPage;
     }
 
     /**
      * @return mixed
      */
-    public function getWebPageId()
+    public function getWebPage()
     {
-        return $this->webPageId;
+        return $this->webPage;
     }
 }

@@ -18,7 +18,7 @@ use Symfony\Component\EventDispatcher\Event;
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-final class WebPageWriteEvent extends Event
+final class WebPageWritedEvent extends Event
 {
     /**
      * @var

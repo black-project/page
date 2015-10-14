@@ -10,7 +10,7 @@
 
 namespace Black\Component\Page\Infrastructure\CQRS\Handler;
 
-use Black\Component\Page\Domain\Model\WebPageReadRepository;
+use Black\Component\Page\Domain\Model\WebPageWriteRepository;
 use Black\Component\Page\Infrastructure\CQRS\Command\PublishWebPageCommand;
 use Black\Component\Page\Domain\Event\WebPagePublishedEvent;
 use Black\Component\Page\Infrastructure\Service\WebPageWriteService;
@@ -48,7 +48,7 @@ final class PublishWebPageHandler implements CommandHandler
      */
     public function __construct(
         WebPageWriteService $service,
-        WebPageReadRepository $repository,
+        WebPageWriteRepository $repository,
         EventDispatcherInterface $eventDispatcher
     ) {
         $this->service         = $service;
@@ -62,7 +62,7 @@ final class PublishWebPageHandler implements CommandHandler
      */
     public function handle(PublishWebPageCommand $command)
     {
-        $page = $this->service->publish($command->getWebPageId());
+        $page = $this->service->publish($command->getWebPage());
 
         $this->repository->flush();
 

@@ -31,11 +31,11 @@ class WebPageSpec extends ObjectBehavior
     public function let()
     {
         $pageId = new WebPageId('12345');
-        $page   = new WebPage($pageId, 'test', 'test');
+        $page   = new WebPage($pageId, 'test', 'test', 'test');
 
         $this->webPageId = $page->getWebPageId();
         $this->name      = $page->getName();
-        $this->author    = $page->getAUthor();
+        $this->author    = $page->getAuthor();
 
         $this->beConstructedWith($this->webPageId, $this->name, $this->author);
     }

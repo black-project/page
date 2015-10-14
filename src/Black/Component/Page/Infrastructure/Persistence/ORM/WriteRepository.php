@@ -30,7 +30,9 @@ class WriteRepository extends EntityRepository implements WebPageWriteRepository
     }
 
     /**
-     *
+     * Flushes all changes to objects that have been queued up to now to the database.
+     * This effectively synchronizes the in-memory state of managed objects with the
+     * database.
      */
     public function flush()
     {
