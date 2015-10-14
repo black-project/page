@@ -65,7 +65,7 @@ final class CreateWebPageHandler implements CommandHandler
         $page = $this->service->create($command->getWebPageId(), $command->getAuthor(), $command->getName());
         $this->repository->flush();
 
-        $event = new WebPageCreatedEvent($page->getWebPageId()->getValue(), $page->getName(), $page->getDateCreated());
+        $event = new WebPageCreatedEvent($page->getWebPageId()->getValue(), $page->getName());
         $this->eventDispatcher->dispatch(WebPageDomainEvents::WEBPAGE_DOMAIN_CREATED, $event);
     }
 }

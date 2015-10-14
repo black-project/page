@@ -47,20 +47,4 @@ final class WebPageCreatedEvent extends Event
     {
         return "The page {$this->name} was successfully created with {$this->webPageId} identifier";
     }
-
-    /**
-     * @return mixed
-     */
-    public function getWebPageId()
-    {
-        return $this->webPageId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
 }
