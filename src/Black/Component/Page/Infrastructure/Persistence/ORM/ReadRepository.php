@@ -34,6 +34,24 @@ class ReadRepository extends EntityRepository implements WebPageReadRepository
     }
 
     /**
+     * @param $slug
+     * @return mixed|null
+     */
+    public function findBySlug($slug)
+    {
+        $query = $this->getQueryBuilder()
+            ->where('p.slug = :slug')
+            ->setParameter('slug', $slug)
+            ->getQuery();
+
+        try {
+            return $query->getSingleResult();
+        } catch (NoResultException $exception) {
+            return null;
+        }
+    }
+
+    /**
      * @return mixed
      */
     public function findAll()

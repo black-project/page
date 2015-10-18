@@ -12,7 +12,7 @@ namespace Black\Component\Page\Infrastructure\CQRS\Handler;
 
 use Black\Component\Page\Domain\Model\WebPageWriteRepository;
 use Black\Component\Page\Infrastructure\CQRS\Command\WriteWebPageCommand;
-use Black\Component\Page\Domain\Event\WebPageWriteEvent;
+use Black\Component\Page\Domain\Event\WebPageWritedEvent;
 use Black\Component\Page\Infrastructure\Service\WebPageWriteService;
 use Black\Component\Page\WebPageDomainEvents;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
@@ -71,7 +71,7 @@ final class WriteWebPageHandler implements CommandHandler
 
         $this->repository->flush();
 
-        $event = new WebPageWriteEvent($page->getWebPageId()->getValue(), $page->getName());
+        $event = new WebPageWritedEvent($page->getWebPageId()->getValue(), $page->getName());
         $this->eventDispatcher->dispatch(WebPageDomainEvents::WEBPAGE_DOMAIN_WRITE, $event);
     }
 }

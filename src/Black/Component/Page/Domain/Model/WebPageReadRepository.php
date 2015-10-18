@@ -17,4 +17,6 @@ interface WebPageReadRepository
     public function findAll();
 
     public function find(WebPageId $id);
+
+    public function findBySlug($slug);
 }

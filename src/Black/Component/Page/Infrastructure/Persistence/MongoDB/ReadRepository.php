@@ -32,6 +32,19 @@ class ReadRepository extends DocumentRepository implements WebPageReadRepository
         }
     }
 
+    public function findBySlug($slug)
+    {
+        $query = $this->getQueryBuilder()
+            ->field('slug')->equals($slug)
+            ->getQuery();
+
+        try {
+            return $query->getSingleResult();
+        } catch (NoResultException $exception) {
+            return null;
+        }
+    }
+
     /**
      * @return mixed
      */

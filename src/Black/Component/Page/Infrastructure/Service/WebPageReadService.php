@@ -43,4 +43,20 @@ class WebPageReadService
 
         return $page;
     }
+
+    /**
+     * @param $slug
+     * @return mixed
+     */
+    public function readBySlug($slug)
+    {
+        $page = $this->repository->findBySlug($slug);
+
+        if (null === $page) {
+            throw new WebPageNotFoundException();
+        }
+
+        return $page;
+    }
+
 }
