@@ -8,18 +8,19 @@
  * file that was distributed with this source code.
  */
 
-namespace Black\Component\Page\Infrastructure\DomainEvent;
+namespace Black\Component\Page\Infrastructure\Listener;
 
+use Black\Component\Page\Domain\Event\WebPageCreatedEvent;
 use Monolog\Logger;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * Class WebPageCreatedSubscriber
+ * Class WebPageCreatedListener
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-class WebPageCreatedSubscriber implements EventSubscriberInterface
+class WebPageCreatedListener implements EventSubscriberInterface
 {
     protected $logger;
 
@@ -45,11 +46,10 @@ class WebPageCreatedSubscriber implements EventSubscriberInterface
 
     /**
      * @param WebPageCreatedEvent $event
+     * @return mixed
      */
     public function onWebPageCreated(WebPageCreatedEvent $event)
     {
         $this->logger->info($event->execute());
-
-        return $event->getWebPageId();
     }
 }

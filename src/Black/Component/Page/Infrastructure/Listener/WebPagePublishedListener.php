@@ -8,18 +8,19 @@
  * file that was distributed with this source code.
  */
 
-namespace Black\Component\Page\Infrastructure\DomainEvent;
+namespace Black\Component\Page\Infrastructure\Listener;
 
+use Black\Component\Page\Domain\Event\WebPagePublishedEvent;
 use Monolog\Logger;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * Class WebPagePublishedSubscriber
+ * Class WebPagePublishedListener
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-class WebPagePublishedSubscriber implements EventSubscriberInterface
+class WebPagePublishedListener implements EventSubscriberInterface
 {
     /**
      * @param Logger $logger

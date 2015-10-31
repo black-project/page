@@ -27,10 +27,11 @@
         "monolog/monolog": "~1.10",
         "symfony/event-dispatcher": "~2.5",
         "symfony/http-kernel": "~2.5",
-        "black/common": "~1.0"
+        "black/common": "~2.0.0",
+        "cocur/slugify": "~1.0"
     },
     "require-dev": {
-        "phpspec/phpspec": "~2.0"
+        "phpspec/phpspec": "~2.2"
     },
     "config": {
         "bin-dir": "bin"

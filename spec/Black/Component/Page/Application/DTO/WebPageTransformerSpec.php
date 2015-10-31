@@ -5,7 +5,7 @@ namespace spec\Black\Component\Page\Application\DTO;
 use Black\Component\Page\Domain\Model\WebPageId;
 use PhpSpec\ObjectBehavior;
 
-class WebPageTransformerSpec extends ObjectBehavior
+class WebPageAssemblerSpec extends ObjectBehavior
 {
     protected $entityClass;
 
@@ -17,11 +17,6 @@ class WebPageTransformerSpec extends ObjectBehavior
         $this->dtoClass    = 'Black\Component\Page\Application\DTO\WebPageDTO';
 
         $this->beConstructedWith($this->entityClass, $this->dtoClass);
-    }
-
-    public function it_is_initializable()
-    {
-        $this->shouldImplement('Black\DDD\DDDinPHP\Application\DTO\Transformer');
     }
 
     public function it_should_transform()

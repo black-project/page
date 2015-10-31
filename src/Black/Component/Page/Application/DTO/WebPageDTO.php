@@ -10,15 +10,13 @@
 
 namespace Black\Component\Page\Application\DTO;
 
-use Black\DDD\DDDinPHP\Application\DTO\DTO;
-
 /**
  * Class WebPageDTO
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-final class WebPageDTO implements DTO
+final class WebPageDTO
 {
     /**
      * @var int
@@ -196,7 +194,7 @@ final class WebPageDTO implements DTO
      */
     public function unserialize($serialized)
     {
-       return list(
+        return list(
            $this->id,
            $this->author,
            $this->name,

@@ -27,7 +27,6 @@ class WriteWebPageDTOSpec extends ObjectBehavior
     public function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\Page\Application\DTO\WriteWebPageDTO');
-        $this->shouldImplement('Black\DDD\DDDinPHP\Application\DTO\DTO');
     }
 
     public function it_should_return_id()

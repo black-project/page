@@ -8,18 +8,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Black\Component\Page\Infrastructure\DomainEvent;
+namespace Black\Component\Page\Domain\Event;
 
-use Black\DDD\DDDinPHP\Infrastructure\DomainEvent\DomainEvent;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Class WebPageRemovedEvent
+ * Class WebPageDepublishedEvent
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-final class WebPageRemovedEvent extends Event implements DomainEvent
+final class WebPageDepublishedEvent extends Event
 {
     /**
      * @var
@@ -44,8 +43,8 @@ final class WebPageRemovedEvent extends Event implements DomainEvent
     /**
      * @return string
      */
-    public function execute()
+    public function message()
     {
-        return sprintf('The page %s with %s identifier is terminated.', $this->name, $this->webPageId);
+        return "The page {$this->name} was successfully depublished for {$this->webPageId} identifier";
     }
 }

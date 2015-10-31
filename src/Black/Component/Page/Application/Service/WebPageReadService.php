@@ -10,42 +10,43 @@
 
 namespace Black\Component\Page\Application\Service;
 
+use Black\Component\Common\Application\Specification\Specification;
+use Black\Component\Page\Application\DTO\WebPageAssembler;
 use Black\Component\Page\Application\DTO\WebPageDTO;
-use Black\Component\Page\Application\DTO\WebPageTransformer;
-use Black\DDD\DDDinPHP\Application\Service\ApplicationService;
-use Black\DDD\DDDinPHP\Application\Specification\Specification;
-use Black\DDD\DDDinPHP\Infrastructure\Service\InfrastructureService;
+use Black\Component\Page\Application\Specification\PageIsPublishedSpecification;
+use Black\Component\Page\Domain\Model\WebPage;
+use Black\Component\Page\Infrastructure\Service\WebPageReadService as InfrastructureService;
 
-class WebPageReadService implements ApplicationService
+class WebPageReadService
 {
     /**
-     * @var \Black\DDD\DDDinPHP\Application\Specification\Specification
+     * @var Specification
      */
     protected $specification;
 
     /**
-     * @var \Black\DDD\DDDinPHP\Infrastructure\Service\InfrastructureService
+     * @var InfrastructureService
      */
     protected $service;
 
     /**
-     * @var \Black\Component\Page\Application\DTO\WebPageTransformer
+     * @var
      */
     protected $transformer;
 
     /**
-     * @param Specification         $specification
+     * @param PageIsPublishedSpecification $specification
      * @param InfrastructureService $service
-     * @param WebPageTransformer    $transformer
+     * @param WebPageAssembler $assembler
      */
     public function __construct(
-        Specification $specification,
+        PageIsPublishedSpecification $specification,
         InfrastructureService $service,
-        WebPageTransformer $transformer
+        WebPageAssembler $assembler
     ) {
         $this->specification = $specification;
         $this->service       = $service;
-        $this->transformer   = $transformer;
+        $this->assembler   = $assembler;
     }
 
     /**
@@ -57,10 +58,24 @@ class WebPageReadService implements ApplicationService
     {
         $page = $this->service->read($id);
 
-        if ($this->specification->isSatisfiedBy($page)) {
+        return $this->checkSatisfaction($page);
+    }
 
-            $dto = $this->transformer->transform($page);
+    /**
+     * @param $slug
+     * @return mixed
+     */
+    public function readBySlug($slug)
+    {
+        $page = $this->service->readBySlug($slug);
 
+        return $this->checkSatisfaction($page);
+    }
+
+    private function checkSatisfaction(WebPage $page)
+    {
+        if (true === $this->specification->isSatisfiedBy($page)) {
+            $dto = $this->assembler->transform($page);
             return $dto;
         }
     }

@@ -15,7 +15,6 @@ class WebPageIdSpec extends ObjectBehavior
     public function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\Page\Domain\Model\WebPageId');
-        $this->shouldImplement('Black\DDD\DDDinPHP\Domain\Model\ValueObject');
     }
 
     public function it_should_have_a_value()

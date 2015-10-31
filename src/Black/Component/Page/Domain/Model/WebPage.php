@@ -11,8 +11,6 @@
 
 namespace Black\Component\Page\Domain\Model;
 
-use Black\DDD\DDDinPHP\Domain\Model\Entity;
-
 /**
  * Class WebPage
  *
@@ -21,7 +19,7 @@ use Black\DDD\DDDinPHP\Domain\Model\Entity;
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-class WebPage implements Entity
+class WebPage
 {
     /**
      * @var
@@ -84,14 +82,12 @@ class WebPage implements Entity
     /**
      * Construct the WebPage
      */
-    public function __construct(WebPageId $id, $name, $author, $headline = null, $about = null, $text = null)
+    public function __construct(WebPageId $id, $author, $name, $slug)
     {
         $this->webPageId    = $id;
         $this->name         = $name;
+        $this->slug         = $slug;
         $this->author       = $author;
-        $this->headline     = $headline;
-        $this->about        = $about;
-        $this->text         = $text;
         $this->dateCreated  = new \DateTime();
         $this->dateModified = new \DateTime();
     }

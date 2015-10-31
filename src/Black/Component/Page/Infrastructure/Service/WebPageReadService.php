@@ -12,37 +12,30 @@ namespace Black\Component\Page\Infrastructure\Service;
 
 use Black\Component\Page\Domain\Exception\WebPageNotFoundException;
 use Black\Component\Page\Domain\Model\WebPageId;
-use Black\Component\Page\Infrastructure\Doctrine\WebPageManager;
-use Black\DDD\DDDinPHP\Infrastructure\Service\InfrastructureService;
-use Black\DDD\DDDinPHP\Application\Specification\Specification;
+use Black\Component\Page\Domain\Model\WebPageReadRepository;
 
-class WebPageReadService implements InfrastructureService
+class WebPageReadService
 {
     /**
-     * @var \Black\Component\Page\Infrastructure\Doctrine\WebPageManager
+     * @var WebPageReadRepository
      */
-    protected $manager;
+    protected $repository;
 
     /**
-     * @param WebPageManager $manager
-     * @param Specification  $specification
+     * @param WebPageReadRepository $repository
      */
-    public function __construct(
-        WebPageManager $manager,
-        Specification $specification
-    ) {
-        $this->manager       = $manager;
-        $this->specification = $specification;
+    public function __construct(WebPageReadRepository $repository)
+    {
+        $this->repository = $repository;
     }
 
     /**
-     * @param  WebPageId                                                       $webPageId
+     * @param WebPageId $webPageId
      * @return mixed
-     * @throws \Black\Component\Page\Domain\Exception\WebPageNotFoundException
      */
     public function read(WebPageId $webPageId)
     {
-        $page = $this->manager->find($webPageId);
+        $page = $this->repository->find($webPageId);
 
         if (null === $page) {
             throw new WebPageNotFoundException();
@@ -50,4 +43,20 @@ class WebPageReadService implements InfrastructureService
 
         return $page;
     }
+
+    /**
+     * @param $slug
+     * @return mixed
+     */
+    public function readBySlug($slug)
+    {
+        $page = $this->repository->findBySlug($slug);
+
+        if (null === $page) {
+            throw new WebPageNotFoundException();
+        }
+
+        return $page;
+    }
+
 }

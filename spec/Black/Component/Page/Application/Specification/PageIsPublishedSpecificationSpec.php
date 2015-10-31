@@ -13,7 +13,6 @@ class PageIsPublishedSpecificationSpec extends ObjectBehavior
     public function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\Page\Application\Specification\PageIsPublishedSpecification');
-        $this->shouldImplement('Black\DDD\DDDinPHP\Application\Specification\Specification');
     }
 
     public function let()
