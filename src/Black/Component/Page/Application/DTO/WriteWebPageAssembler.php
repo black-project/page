@@ -52,10 +52,10 @@ class WriteWebPageAssembler
     }
 
     /**
-     * @param WebPageDTO $webPageDTO
+     * @param WriteWebPageDTO $webPageDTO
      * @return mixed
      */
-    public function reverseTransform(WebPageDTO $webPageDTO)
+    public function reverseTransform(WriteWebPageDTO $webPageDTO)
     {
         $webPageId = new WebPageId($webPageDTO->getId());
 

@@ -55,17 +55,16 @@ class WritePageController
     }
 
     /**
-     * @param WriteWebPageDTO $page
+     * @param WriteWebPageDTO $dto
      */
-    public function writePageAction(WriteWebPageDTO $page)
+    public function writePageAction(WriteWebPageDTO $dto)
     {
         $this->bus->register($this->commandName, $this->handler);
-
         $this->bus->handle(new $this->commandName(
-                new WebPageId($page->getId()),
-                $page->getHeadline(),
-                $page->getAbout(),
-                $page->getText()
-            ));
+            new WebPageId($dto->getId()),
+            $dto->getHeadline(),
+            $dto->getAbout(),
+            $dto->getText()
+        ));
     }
 }

@@ -10,9 +10,11 @@
 
 namespace Black\Component\Page\Infrastructure\CQRS\Handler;
 
+use Black\Component\Page\Domain\Model\WebPageId;
 use Black\Component\Page\Domain\Model\WebPageWriteRepository;
 use Black\Component\Page\Infrastructure\CQRS\Command\WriteWebPageCommand;
 use Black\Component\Page\Domain\Event\WebPageWritedEvent;
+use Black\Component\Page\Infrastructure\Service\WebPageReadService;
 use Black\Component\Page\Infrastructure\Service\WebPageWriteService;
 use Black\Component\Page\WebPageDomainEvents;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
@@ -27,9 +29,14 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 final class WriteWebPageHandler implements CommandHandler
 {
     /**
+     * @var WebPageReadService
+     */
+    protected $readService;
+
+    /**
      * @var WebPageWriteService
      */
-    protected $service;
+    protected $writeService;
 
     /**
      * @var WebPageWriteRepository
@@ -42,16 +49,20 @@ final class WriteWebPageHandler implements CommandHandler
     protected $eventDispatcher;
 
     /**
-     * @param WebPageWriteService $service
+     * WriteWebPageHandler constructor.
+     * @param WebPageReadService $readService
+     * @param WebPageWriteService $writeService
      * @param WebPageWriteRepository $repository
      * @param EventDispatcherInterface $eventDispatcher
      */
     public function __construct(
-        WebPageWriteService $service,
+        WebPageReadService $readService,
+        WebPageWriteService $writeService,
         WebPageWriteRepository $repository,
         EventDispatcherInterface $eventDispatcher
     ) {
-        $this->service         = $service;
+        $this->readService = $readService;
+        $this->writeService = $writeService;
         $this->repository      = $repository;
         $this->eventDispatcher = $eventDispatcher;
     }
@@ -62,8 +73,9 @@ final class WriteWebPageHandler implements CommandHandler
      */
     public function handle(WriteWebPageCommand $command)
     {
-        $page = $this->service->write(
-            $command->getWebPage(),
+        $page = $this->readService->read($command->getWebPageId());
+        $page = $this->writeService->write(
+            $page,
             $command->getHeadline(),
             $command->getAbout(),
             $command->getText()

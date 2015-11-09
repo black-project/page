@@ -10,7 +10,7 @@
 
 namespace Black\Component\Page\Infrastructure\CQRS\Command;
 
-use Black\Component\Page\Domain\Model\WebPage;
+use Black\Component\Page\Domain\Model\WebPageId;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
 
 /**
@@ -24,7 +24,7 @@ final class WriteWebPageCommand implements Command
     /**
      * @var \Black\Component\Page\Domain\Model\WebPage
      */
-    private $webPage;
+    private $webPageId;
 
     /**
      * @var
@@ -42,14 +42,15 @@ final class WriteWebPageCommand implements Command
     private $text;
 
     /**
-     * @param WebPage $webPage
+     * WriteWebPageCommand constructor.
+     * @param WebPageId $webPageId
      * @param $headline
      * @param $about
      * @param $text
      */
-    public function __construct(WebPage $webPage, $headline, $about, $text)
+    public function __construct(WebPageId $webPageId, $headline, $about, $text)
     {
-        $this->webPage = $webPage;
+        $this->webPageId = $webPageId;
         $this->headline = $headline;
         $this->about = $about;
         $this->text = $text;
@@ -58,9 +59,9 @@ final class WriteWebPageCommand implements Command
     /**
      * @return mixed
      */
-    public function getWebPage()
+    public function getWebPageId()
     {
-        return $this->webPage;
+        return $this->webPageId;
     }
 
     /**
