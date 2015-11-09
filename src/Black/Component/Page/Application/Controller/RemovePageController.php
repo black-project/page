@@ -11,6 +11,7 @@
 
 namespace Black\Component\Page\Application\Controller;
 
+use Black\Component\Page\Domain\Model\WebPage;
 use Black\Component\Page\Domain\Model\WebPageId;
 use Black\Component\Page\Infrastructure\CQRS\Handler\RemoveWebPageHandler;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Bus;
@@ -56,9 +57,9 @@ class RemovePageController
     /**
      * @param WebPageId $id
      */
-    public function removePageAction(WebPageId $id)
+    public function removePageAction(WebPage $page)
     {
         $this->bus->register($this->commandName, $this->handler);
-        $this->bus->handle(new $this->commandName($id));
+        $this->bus->handle(new $this->commandName($page));
     }
 }

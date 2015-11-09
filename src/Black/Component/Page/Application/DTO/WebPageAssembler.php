@@ -54,9 +54,7 @@ class WebPageAssembler
             $webPage->getName(),
             $webPage->getHeadline(),
             $webPage->getAbout(),
-            $webPage->getText(),
-            $webPage->getAuthor(),
-            $webPage->getAuthor()
+            $webPage->getText()
         );
 
         return $dto;

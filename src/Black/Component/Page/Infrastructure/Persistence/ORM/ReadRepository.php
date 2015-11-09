@@ -56,6 +56,6 @@ class ReadRepository extends EntityRepository implements WebPageReadRepository
      */
     public function findAll()
     {
-        return $this->getQueryBuilder()->getQuery();
+        return $this->getQueryBuilder()->getQuery()->execute();
     }
 }

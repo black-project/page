@@ -59,4 +59,12 @@ class WebPageReadService
         return $page;
     }
 
+    /**
+     * @return mixed
+     */
+    public function listAllPages()
+    {
+        return $this->repository->findAll();
+    }
+
 }
