@@ -12,7 +12,7 @@
 
         <service id="black_page.application.service.read" class="%black_page.application.service.read.class%">
             <argument type="service" id="black_page.application.specification.page_published" />
-            <argument type="service" id="black_page.infrastructure.service.read" />
+            <argument type="service" id="black_page.infrastructure.persistence.cqrs.read" />
             <argument type="service" id="black_page.application.dto.web_page_assembler" />
         </service>
 

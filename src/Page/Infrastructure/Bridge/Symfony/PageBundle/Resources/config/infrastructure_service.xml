@@ -12,11 +12,11 @@
     <services>
 
         <service id="black_page.infrastructure.service.read" class="%black_page.infrastructure.service.read.class%">
-            <argument type="service" id="black_page.persistence.page_read" />
+            <argument type="service" id="black_page.infrastructure.persistence.cqrs.read" />
         </service>
 
         <service id="black_page.infrastructure.service.write" class="%black_page.infrastructure.service.write.class%">
-            <argument type="service" id="black_page.persistence.page_write" />
+            <argument type="service" id="black_page.infrastructure.persistence.cqrs.read" />
         </service>
 
     </services>

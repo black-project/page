@@ -1,17 +1,17 @@
 <?php
 
-namespace Black\Page\Infrastructure\Persistence\ORM;
+namespace Black\Page\Infrastructure\Persistence;
 
-use Black\Component\Common\Infrastructure\Persistence\ORM\EntityRepository;
+use Black\Bridge\Doctrine\Common\Persistence\ORMRepository;
+use Black\Page\Domain\Model\WebPage;
 use Black\Page\Domain\Model\WebPageId;
-use Black\Page\Domain\Model\WebPageReadRepository;
-use Doctrine\Common\Persistence\ObjectManager;
+use Black\Page\Domain\Model\WebPageRepository;
 use Doctrine\ORM\NoResultException;
 
 /**
- * Class ReadRepository
+ * Class DoctrineORMRepository
  */
-class ReadRepository extends EntityRepository implements WebPageReadRepository
+class DoctrineORMRepository extends ORMRepository implements WebPageRepository
 {
     /**
      * @param mixed $id
@@ -57,5 +57,29 @@ class ReadRepository extends EntityRepository implements WebPageReadRepository
     public function findAll()
     {
         return $this->getQueryBuilder()->getQuery()->execute();
+    }
+
+    /**
+     * @param WebPage $webpage
+     */
+    public function add(WebPage $webpage)
+    {
+        $this->manager->persist($webpage);
+        $this->update($webpage);
+    }
+
+    /**
+     * @param WebPage $webpage
+     */
+    public function remove(WebPage $webpage)
+    {
+        $this->manager->remove($webpage);
+        $this->update($webpage);
+
+    }
+
+    public function update(WebPage $webpage)
+    {
+        $this->manager->flush();
     }
 }
