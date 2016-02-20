@@ -25,8 +25,8 @@
     "require": {
         "php": ">=5.4.0",
         "monolog/monolog": "~1.10",
-        "symfony/event-dispatcher": "~2.5",
-        "symfony/http-kernel": "~2.5",
+        "symfony/event-dispatcher": "~2.5|~3.0",
+        "symfony/http-kernel": "~2.5|~3.0",
         "black/common": "~2.0.0",
         "cocur/slugify": "~1.0"
     },
