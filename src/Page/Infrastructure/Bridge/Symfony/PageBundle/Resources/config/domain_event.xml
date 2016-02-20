@@ -6,7 +6,7 @@
 
     <parameters>
         <parameter key="black_page.domain.listener.logger.class">Black\Page\Domain\Listener\LoggerListener</parameter>
-        <parameter key="black_page.infrastructure.listener.flash.class">Black\Bundle\PageBundle\Infrastructure\Listener\FlashNoticeListener</parameter>
+        <parameter key="black_page.infrastructure.listener.flash.class">Black\Bundle\PageBundle\Listener\FlashNoticeListener</parameter>
     </parameters>
 
     <services>

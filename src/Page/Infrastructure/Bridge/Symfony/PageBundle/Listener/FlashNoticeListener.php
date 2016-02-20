@@ -1,6 +1,6 @@
 <?php
 
-namespace Black\Bundle\PageBundle\Infrastructure\Listener;
+namespace Black\Bundle\PageBundle\Listener;
 
 use Black\Page\WebPageDomainEvents;
 use Symfony\Component\EventDispatcher\Event;

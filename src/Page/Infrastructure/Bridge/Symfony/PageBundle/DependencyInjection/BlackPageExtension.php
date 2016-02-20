@@ -1,6 +1,6 @@
 <?php
 
-namespace Black\Bundle\PageBundle\Application\DependencyInjection;
+namespace Black\Bundle\PageBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -46,13 +46,11 @@ class BlackPageExtension extends Extension
 
         foreach (
             [
-                'command',
                 'application_service',
                 'controller',
                 'cqrs',
                 'domain_event',
                 'dto',
-                'form',
                 'infrastructure_service',
                 'specification',
             ] as $basename

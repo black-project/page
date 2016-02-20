@@ -2,7 +2,7 @@
 
 namespace Black\Bundle\PageBundle;
 
-use Black\Bundle\PageBundle\Application\DependencyInjection\BlackPageExtension;
+use Black\Bundle\PageBundle\DependencyInjection\BlackPageExtension;
 use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
 use Doctrine\Bundle\MongoDBBundle\DependencyInjection\Compiler\DoctrineMongoDBMappingsPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
