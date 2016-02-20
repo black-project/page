@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="black_page.domain.listener.logger.class">Black\Page\Domain\Listener\LoggerListener</parameter>
+        <parameter key="black_page.infrastructure.listener.flash.class">Black\Bundle\PageBundle\Infrastructure\Listener\FlashNoticeListener</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="black_page.domain.listener.logger"
+                 class="%black_page.domain.listener.logger.class%">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="logger" />
+        </service>
+
+        <service id="black_page.infrastructure.listener.flash"
+                 class="%black_page.infrastructure.listener.flash.class%">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="session" />
+            <argument type="service" id="translator.default" />
+        </service>
+
+    </services>
+</container>

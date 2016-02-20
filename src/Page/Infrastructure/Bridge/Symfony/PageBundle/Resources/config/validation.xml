@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<constraint-mapping
+        xmlns="http://symfony.com/schema/dic/constraint-mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+        http://symfony.com/schema/dic/services/constraint-mapping-1.0.xsd">
+
+    <class name="Black\Page\Application\DTO\WebPageDTO">
+        <property name="author">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">black.bundle.page.domain.dto.webPageDto.author.validation.message.type</option>
+            </constraint>
+
+            <constraint name="Length">
+                <option name="max">255</option>
+                <option name="maxMessage">black.bundle.page.domain.dto.webPageDto.author.validation.message.length</option>
+            </constraint>
+
+            <constraint name="NotBlank">
+                <option name="message">black.bundle.page.domain.dto.webPageDto.author.validation.message.type</option>
+            </constraint>
+        </property>
+
+        <property name="name">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">black.bundle.page.domain.dto.webPageDto.name.validation.message.type</option>
+            </constraint>
+
+            <constraint name="Length">
+                <option name="max">255</option>
+                <option name="maxMessage">black.bundle.page.domain.dto.webPageDto.name.validation.message.length</option>
+            </constraint>
+
+            <constraint name="NotBlank">
+                <option name="message">black.bundle.page.domain.dto.webPageDto.name.validation.message.type</option>
+            </constraint>
+        </property>
+
+        <property name="headline">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">black.bundle.page.domain.dto.webPageDto.headline.validation.message.type</option>
+            </constraint>
+
+            <constraint name="Length">
+                <option name="max">255</option>
+                <option name="maxMessage">black.bundle.page.domain.dto.webPageDto.headline.validation.message.length</option>
+            </constraint>
+        </property>
+
+        <property name="about">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">black.bundle.page.domain.dto.webPageDto.about.validation.message.type</option>
+            </constraint>
+        </property>
+
+        <property name="text">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">black.bundle.page.domain.dto.webPageDto.text.validation.message.type</option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="Black\Page\Domain\Model\WebPage">
+        <property name="name">
+            <constraint name="Type">
+                <option name="type">string</option>
+            </constraint>
+
+            <constraint name="Length">
+                <option name="max">255</option>
+            </constraint>
+
+            <constraint name="NotBlank" />
+        </property>
+
+        <property name="slug">
+            <constraint name="Type">
+                <option name="type">string</option>
+            </constraint>
+
+            <constraint name="Length">
+                <option name="max">255</option>
+            </constraint>
+        </property>
+
+        <property name="headline">
+            <constraint name="Type">
+                <option name="type">string</option>
+            </constraint>
+
+            <constraint name="Length">
+                <option name="max">1</option>
+            </constraint>
+
+            <constraint name="NotBlank" />
+        </property>
+
+        <property name="about">
+            <constraint name="Type">
+                <option name="type">string</option>
+            </constraint>
+        </property>
+
+        <property name="text">
+            <constraint name="Type">
+                <option name="type">string</option>
+            </constraint>
+        </property>
+
+        <property name="dateCreated">
+            <constraint name="DateTime" />
+        </property>
+
+        <property name="dateModified">
+            <constraint name="DateTime" />
+        </property>
+
+        <property name="datePublished">
+            <constraint name="DateTime" />
+        </property>
+    </class>
+
+    <class name="Black\Page\Domain\Model\WebPageId">
+        <property name="value">
+            <constraint name="Type">
+                <option name="type">string</option>
+            </constraint>
+
+            <constraint name="Length">
+                <option name="max">255</option>
+            </constraint>
+
+            <constraint name="NotBlank" />
+        </property>
+    </class>
+
+</constraint-mapping>
