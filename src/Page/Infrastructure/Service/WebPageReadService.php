@@ -4,19 +4,21 @@ namespace Black\Page\Infrastructure\Service;
 
 use Black\Page\Domain\Exception\WebPageNotFoundException;
 use Black\Page\Domain\Model\WebPageId;
-use Black\Page\Domain\Model\WebPageReadRepository;
+use Black\Page\Infrastructure\Persistence\CQRS\ReadRepository;
 
 class WebPageReadService
 {
     /**
-     * @var WebPageReadRepository
+     * @var ReadRepository
      */
     protected $repository;
 
     /**
-     * @param WebPageReadRepository $repository
+     * WebPageReadService constructor.
+     *
+     * @param ReadRepository $repository
      */
-    public function __construct(WebPageReadRepository $repository)
+    public function __construct(ReadRepository $repository)
     {
         $this->repository = $repository;
     }

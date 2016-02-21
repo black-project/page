@@ -13,7 +13,7 @@ use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Bus;
 class WriteWebPage
 {
     /**
-     * @var \Black\DDD\CQRSinPHP\Infrastructure\CQRS\Bus
+     * @var Bus
      */
     protected $bus;
 
@@ -23,7 +23,7 @@ class WriteWebPage
     protected $commandName;
 
     /**
-     * @var \Black\Page\Infrastructure\CQRS\Handler\WriteWebPageHandler
+     * @var WriteWebPageHandler
      */
     protected $handler;
 

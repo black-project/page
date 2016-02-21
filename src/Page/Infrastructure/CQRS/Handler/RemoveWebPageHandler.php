@@ -3,8 +3,8 @@
 namespace Black\Page\Infrastructure\CQRS\Handler;
 
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
-use Black\Page\Domain\Model\WebPageWriteRepository;
 use Black\Page\Domain\Event\WebPageRemovedEvent;
+use Black\Page\Infrastructure\Persistence\CQRS\WriteRepository;
 use Black\Page\Infrastructure\Service\WebPageWriteService;
 use Black\Page\WebPageEvents;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
@@ -21,7 +21,7 @@ final class RemoveWebPageHandler implements CommandHandler
     protected $service;
 
     /**
-     * @var WebPageWriteRepository
+     * @var WriteRepository
      */
     protected $repository;
 
@@ -31,13 +31,15 @@ final class RemoveWebPageHandler implements CommandHandler
     protected $eventDispatcher;
 
     /**
+     * RemoveWebPageHandler constructor.
+     *
      * @param WebPageWriteService $service
-     * @param WebPageWriteRepository $repository
+     * @param WriteRepository $repository
      * @param EventDispatcherInterface $eventDispatcher
      */
     public function __construct(
         WebPageWriteService $service,
-        WebPageWriteRepository $repository,
+        WriteRepository $repository,
         EventDispatcherInterface $eventDispatcher
     ) {
         $this->service = $service;
@@ -51,8 +53,6 @@ final class RemoveWebPageHandler implements CommandHandler
     public function handle(Command $command)
     {
         $page = $this->service->remove($command->getWebPage());
-
-        $this->repository->flush();
 
         $event = new WebPageRemovedEvent($page->getWebPageId()->getValue(), $page->getName());
         $this->eventDispatcher->dispatch(WebPageEvents::WEBPAGE_DOMAIN_REMOVED, $event);

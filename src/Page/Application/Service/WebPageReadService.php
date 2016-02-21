@@ -24,7 +24,7 @@ class WebPageReadService
     /**
      * @var
      */
-    protected $transformer;
+    protected $assembler;
 
     /**
      * @param PageIsPublishedSpecification $specification
@@ -37,8 +37,8 @@ class WebPageReadService
         WebPageAssembler $assembler
     ) {
         $this->specification = $specification;
-        $this->service       = $service;
-        $this->assembler   = $assembler;
+        $this->service = $service;
+        $this->assembler = $assembler;
     }
 
     /**

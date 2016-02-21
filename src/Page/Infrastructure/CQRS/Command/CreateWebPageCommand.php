@@ -11,7 +11,7 @@ use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
 final class CreateWebPageCommand implements Command
 {
     /**
-     * @var \Black\Page\Domain\Model\WebPageId
+     * @var WebPageId
      */
     private $webPageId;
 

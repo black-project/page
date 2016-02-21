@@ -5,12 +5,13 @@ namespace Black\Page\Infrastructure\Service;
 use Black\Page\Domain\Model\WebPage;
 use Black\Page\Domain\Model\WebPageId;
 use Black\Page\Domain\Model\WebPageWriteRepository;
+use Black\Page\Infrastructure\Persistence\CQRS\WriteRepository;
 use Cocur\Slugify\Slugify;
 
 class WebPageWriteService
 {
     /**
-     * @var WebPageWriteRepository
+     * @var WriteRepository
      */
     protected $repository;
 
@@ -20,9 +21,10 @@ class WebPageWriteService
     protected $class;
 
     /**
-     * @param WebPageWriteRepository $repository
+     * WebPageWriteService constructor.
+     * @param WriteRepository $repository
      */
-    public function __construct(WebPageWriteRepository $repository)
+    public function __construct(WriteRepository $repository)
     {
         $this->repository = $repository;
         $this->class = $repository->getClassName();

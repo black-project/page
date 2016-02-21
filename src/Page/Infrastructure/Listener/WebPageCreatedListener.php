@@ -11,6 +11,9 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class WebPageCreatedListener implements EventSubscriberInterface
 {
+    /**
+     * @var Logger
+     */
     protected $logger;
 
     /**

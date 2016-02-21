@@ -12,7 +12,7 @@ use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Bus;
 class PublishWebPage
 {
     /**
-     * @var \Black\DDD\CQRSinPHP\Infrastructure\CQRS\Bus
+     * @var Bus
      */
     protected $bus;
 
@@ -22,7 +22,7 @@ class PublishWebPage
     protected $commandName;
 
     /**
-     * @var \Black\Page\Infrastructure\CQRS\Handler\PublishWebPageHandler
+     * @var PublishWebPageHandler
      */
     protected $handler;
 

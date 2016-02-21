@@ -6,7 +6,7 @@
 
     <parameters>
         <parameter key="black_page.infrastructure.persistence.cqrs.write.class">Black\Page\Infrastructure\Persistence\CQRS\WriteRepository</parameter>
-        <parameter key="black_page.infrastructure..persistence.cqrs.read.class">Black\Page\Infrastructure\Persistence\CQRS\WriteRepository</parameter>
+        <parameter key="black_page.infrastructure..persistence.cqrs.read.class">Black\Page\Infrastructure\Persistence\CQRS\ReadRepository</parameter>
 
         <parameter key="black_page.infrastructure.cqrs.handler.create_web_page.class">Black\Page\Infrastructure\CQRS\Handler\CreateWebPageHandler</parameter>
         <parameter key="black_page.infrastructure.cqrs.handler.write_web_page.class">Black\Page\Infrastructure\CQRS\Handler\WriteWebPageHandler</parameter>

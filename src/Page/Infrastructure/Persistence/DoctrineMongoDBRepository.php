@@ -33,6 +33,10 @@ class DoctrineMongoDBRepository extends MongoDBRepository implements WebPageRepo
         }
     }
 
+    /**
+     * @param $slug
+     * @return null
+     */
     public function findBySlug($slug)
     {
         $query = $this->getQueryBuilder()
@@ -73,6 +77,9 @@ class DoctrineMongoDBRepository extends MongoDBRepository implements WebPageRepo
 
     }
 
+    /**
+     * @param WebPage $webpage
+     */
     public function update(WebPage $webpage)
     {
         $this->manager->flush();

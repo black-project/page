@@ -11,7 +11,7 @@ use Black\Page\Domain\Model\WebPageId;
 class ReadWebPage
 {
     /**
-     * @var \Black\Page\Application\Service\WebPageReadService
+     * @var WebPageReadService
      */
     protected $service;
 
@@ -25,7 +25,6 @@ class ReadWebPage
 
     /**
      * @param WebPageId $id
-     *
      * @return \Black\Page\Application\DTO\WebPageDTO
      */
     public function __invoke(WebPageId $id)

@@ -78,6 +78,9 @@ class DoctrineORMRepository extends ORMRepository implements WebPageRepository
 
     }
 
+    /**
+     * @param WebPage $webpage
+     */
     public function update(WebPage $webpage)
     {
         $this->manager->flush();

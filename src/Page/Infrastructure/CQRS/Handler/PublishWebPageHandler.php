@@ -3,8 +3,8 @@
 namespace Black\Page\Infrastructure\CQRS\Handler;
 
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
-use Black\Page\Domain\Model\WebPageWriteRepository;
 use Black\Page\Domain\Event\WebPagePublishedEvent;
+use Black\Page\Infrastructure\Persistence\CQRS\WriteRepository;
 use Black\Page\Infrastructure\Service\WebPageWriteService;
 use Black\Page\WebPageEvents;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
@@ -21,7 +21,7 @@ final class PublishWebPageHandler implements CommandHandler
     protected $service;
 
     /**
-     * @var WebPageWriteRepository
+     * @var WriteRepository
      */
     protected $repository;
 
@@ -34,12 +34,12 @@ final class PublishWebPageHandler implements CommandHandler
      * PublishWebPageHandler constructor.
      *
      * @param WebPageWriteService $service
-     * @param WebPageWriteRepository $repository
+     * @param WriteRepository $repository
      * @param EventDispatcherInterface $eventDispatcher
      */
     public function __construct(
         WebPageWriteService $service,
-        WebPageWriteRepository $repository,
+        WriteRepository $repository,
         EventDispatcherInterface $eventDispatcher
     ) {
         $this->service = $service;
@@ -53,8 +53,6 @@ final class PublishWebPageHandler implements CommandHandler
     public function handle(Command $command)
     {
         $page = $this->service->publish($command->getWebPage());
-
-        $this->repository->flush();
 
         $event = new WebPagePublishedEvent($page->getWebPageId()->getValue(), $page->getName());
         $this->eventDispatcher->dispatch(WebPageEvents::WEBPAGE_DOMAIN_PUBLISHED, $event);

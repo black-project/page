@@ -16,7 +16,7 @@
         </service>
 
         <service id="black_page.infrastructure.service.write" class="%black_page.infrastructure.service.write.class%">
-            <argument type="service" id="black_page.infrastructure.persistence.cqrs.read" />
+            <argument type="service" id="black_page.infrastructure.persistence.cqrs.write" />
         </service>
 
     </services>

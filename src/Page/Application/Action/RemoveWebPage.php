@@ -13,7 +13,7 @@ use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Bus;
 class RemoveWebPage
 {
     /**
-     * @var \Black\DDD\CQRSinPHP\Infrastructure\CQRS\Bus
+     * @var Bus
      */
     protected $bus;
 
@@ -23,7 +23,7 @@ class RemoveWebPage
     protected $commandName;
 
     /**
-     * @var \Black\Page\Infrastructure\CQRS\Handler\RemoveWebPageHandler
+     * @var RemoveWebPageHandler
      */
     protected $handler;
 

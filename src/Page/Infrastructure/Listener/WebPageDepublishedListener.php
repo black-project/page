@@ -12,6 +12,11 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class WebPageDepublishedListener implements EventSubscriberInterface
 {
     /**
+     * @var Logger
+     */
+    protected $logger;
+
+    /**
      * @param Logger $logger
      */
     public function __construct(Logger $logger)

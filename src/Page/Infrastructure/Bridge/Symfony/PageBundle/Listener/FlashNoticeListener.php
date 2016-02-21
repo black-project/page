@@ -18,8 +18,9 @@ class FlashNoticeListener implements EventSubscriberInterface
      * @var Session
      */
     protected $session;
+
     /**
-     * @var Translator
+     * @var TranslatorInterface
      */
     protected $translator;
 
@@ -35,6 +36,8 @@ class FlashNoticeListener implements EventSubscriberInterface
     ];
 
     /**
+     * FlashNoticeListener constructor.
+     *
      * @param Session $session
      * @param TranslatorInterface $translator
      */

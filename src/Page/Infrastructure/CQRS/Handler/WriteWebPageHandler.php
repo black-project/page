@@ -4,8 +4,8 @@ namespace Black\Page\Infrastructure\CQRS\Handler;
 
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
 use Black\Page\Domain\Model\WebPageId;
-use Black\Page\Domain\Model\WebPageWriteRepository;
 use Black\Page\Domain\Event\WebPageWritedEvent;
+use Black\Page\Infrastructure\Persistence\CQRS\WriteRepository;
 use Black\Page\Infrastructure\Service\WebPageReadService;
 use Black\Page\Infrastructure\Service\WebPageWriteService;
 use Black\Page\WebPageEvents;
@@ -28,7 +28,7 @@ final class WriteWebPageHandler implements CommandHandler
     protected $writeService;
 
     /**
-     * @var WebPageWriteRepository
+     * @var WriteRepository
      */
     protected $repository;
 
@@ -39,15 +39,16 @@ final class WriteWebPageHandler implements CommandHandler
 
     /**
      * WriteWebPageHandler constructor.
+     *
      * @param WebPageReadService $readService
      * @param WebPageWriteService $writeService
-     * @param WebPageWriteRepository $repository
+     * @param WriteRepository $repository
      * @param EventDispatcherInterface $eventDispatcher
      */
     public function __construct(
         WebPageReadService $readService,
         WebPageWriteService $writeService,
-        WebPageWriteRepository $repository,
+        WriteRepository $repository,
         EventDispatcherInterface $eventDispatcher
     ) {
         $this->readService = $readService;
@@ -68,8 +69,6 @@ final class WriteWebPageHandler implements CommandHandler
             $command->getAbout(),
             $command->getText()
         );
-
-        $this->repository->flush();
 
         $event = new WebPageWritedEvent($page->getWebPageId()->getValue(), $page->getName());
         $this->eventDispatcher->dispatch(WebPageEvents::WEBPAGE_DOMAIN_WRITE, $event);
